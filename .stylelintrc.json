@@ -3,12 +3,11 @@
     "stylelint-config-standard-scss",
     "stylelint-prettier/recommended"
   ],
-  "plugins": ["stylelint-order"],
   "rules": {
-    "order/properties-alphabetical-order": [true, { "severity": "warning" }],
     "block-no-empty": [true, { "severity": "warning" }],
     "selector-class-pattern": null,
     "no-descending-specificity": null,
-    "scss/dollar-variable-pattern": null
+    "scss/dollar-variable-pattern": null,
+    "declaration-empty-line-before": null
   }
 }
