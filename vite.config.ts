@@ -43,6 +43,7 @@ export default defineConfig({
     alias: {
       '@components': '/src/components',
       '@assets': '/src/assets',
+      '@store': '/src/store',
     },
   },
   css: {
