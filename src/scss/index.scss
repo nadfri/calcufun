@@ -7,9 +7,11 @@
 }
 
 body {
-  background-color: var(--bg-color);
+  background: url('@assets/background.webp') center;
+  background-size: 100% 100%;
   color: var(--text-color);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-mario);
+  letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
@@ -22,7 +24,13 @@ body {
 }
 
 button {
+  font-family: var(--font-mario);
   padding: 0;
   cursor: pointer;
   transition: all 0.2s;
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
 }

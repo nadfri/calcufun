@@ -18,15 +18,15 @@ export default defineConfig({
       },
 
       manifest: {
-        name: 'calcufun',
-        short_name: 'calcufun',
+        name: 'CalcuFun!',
+        short_name: 'CalcuFun',
         description:
           'CalcuFun is an educational and fun app designed to develop mental math skills for children.',
         theme_color: '#77DD77',
       },
 
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff,woff2,ttf,eot}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,woff,woff2,ttf,otf}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
       },
