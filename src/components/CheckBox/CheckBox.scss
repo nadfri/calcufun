@@ -1,0 +1,65 @@
+.CheckBox {
+  position: relative;
+  background-color: transparent;
+  border: none;
+
+  &:disabled {
+    filter: grayscale(1);
+  }
+
+  .sweet {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .checkIcon {
+    display: none;
+    width: 24px;
+    position: absolute;
+    left: 40px;
+    top: -10px;
+    z-index: 1;
+    animation: scale 0.3s ease-in-out;
+
+    @media screen and (width >= 600px) {
+      width: 36px;
+      left: 66px;
+      top: -34px;
+    }
+  }
+
+  label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      aspect-ratio: 1/1;
+      width: 40%;
+      background-color: rgb(255 255 255 / 30%);
+      border-radius: 50%;
+    }
+
+    .number {
+      position: absolute;
+      font-size: 2rem;
+      font-family: var(--font-mario);
+      letter-spacing: 1px;
+      color: orange;
+      text-shadow: 2px 3px 0 black;
+    }
+  }
+
+  input[type='checkbox'] {
+    appearance: none;
+    position: absolute;
+  }
+
+  input[type='checkbox']:checked + label .checkIcon {
+    display: block;
+  }
+}
