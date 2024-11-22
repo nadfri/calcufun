@@ -1,4 +1,4 @@
-.CheckBox {
+.RadioSweet {
   position: relative;
   background-color: transparent;
   border: none;
@@ -12,6 +12,24 @@
     max-width: 200px;
     filter: drop-shadow(3px 3px 1px black);
     animation: rotate30 1s ease-out;
+  }
+
+  .diamond {
+    width: 30px;
+    position: relative;
+    bottom: -3px;
+  }
+
+  .diamond-container {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    width: 40px;
+
+    padding: 2px;
+    background-color: rgb(255 255 255 / 36%);
+    border-radius: 50%;
+    margin-inline: 8px;
   }
 
   .checkIcon {
@@ -37,15 +55,6 @@
     align-items: center;
     cursor: pointer;
 
-    &::before {
-      content: '';
-      position: absolute;
-      aspect-ratio: 1/1;
-      width: 40%;
-      background-color: rgb(255 255 255 / 30%);
-      border-radius: 50%;
-    }
-
     .number {
       position: absolute;
       font-size: 2rem;
@@ -54,12 +63,12 @@
     }
   }
 
-  input[type='checkbox'] {
+  input[type='radio'] {
     appearance: none;
     position: absolute;
   }
 
-  input[type='checkbox']:checked + label .checkIcon {
+  input[type='radio']:checked + label .checkIcon {
     display: block;
   }
 }

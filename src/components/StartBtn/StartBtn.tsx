@@ -2,13 +2,12 @@ import { useStoreGame } from '@store/useStoreGame';
 import './StartBtn.scss';
 
 export default function StartBtn() {
-  const { setOpenGame, numbers } = useStoreGame();
+  const { setOpenGame } = useStoreGame();
 
   return (
     <button
       className="StartBtn"
       onClick={() => setOpenGame(true)}
-      disabled={numbers.length === 0}
     >
       <span className="red">S</span>
       <span className="cyan">T</span>

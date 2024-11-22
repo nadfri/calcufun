@@ -1,4 +1,4 @@
-import './CheckBox.scss';
+import './RadioSweet.scss';
 import Sweet2 from '@assets/icons/sweets/sweet-2.svg?react';
 import Sweet3 from '@assets/icons/sweets/sweet-3.svg?react';
 import Sweet4 from '@assets/icons/sweets/sweet-4.svg?react';
@@ -12,6 +12,7 @@ import Sweet11 from '@assets/icons/sweets/sweet-11.svg?react';
 import Sweet12 from '@assets/icons/sweets/sweet-12.svg?react';
 import Sweet13 from '@assets/icons/sweets/sweet-13.svg?react';
 import CheckIcon from '@assets/icons/check.svg?react';
+import Diamond from '@assets/icons/diamond.svg?react';
 import { useStoreGame } from '@store/useStoreGame';
 
 type Props = {
@@ -33,26 +34,25 @@ const sweets: Record<number, JSX.Element> = {
   13: <Sweet13 className="sweet" />,
 };
 
-export default function CheckBox({ label }: Props) {
+export default function RadioSweet({ label }: Props) {
   const SweetIcon = sweets[label];
-  const { numbers, setNumbers, enabledTables } = useStoreGame();
+  const { table, setTable, availableTables } = useStoreGame();
 
-  const isEnabled = enabledTables.includes(label);
+  const isEnabled = availableTables.includes(label);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setNumbers([...numbers, label]);
-    } else {
-      setNumbers(numbers.filter(num => num !== label));
+      setTable(label);
     }
   };
 
   return (
-    <button className="CheckBox" disabled={!isEnabled}>
-      <input 
-        type="checkbox" 
-        id={label.toString()} 
-        checked={numbers.includes(label)}
+    <button className="RadioSweet" disabled={!isEnabled}>
+      <input
+        type="radio"
+        name="radio"
+        id={label.toString()}
+        checked={table === label}
         onChange={handleChange}
         disabled={!isEnabled}
       />
@@ -61,7 +61,14 @@ export default function CheckBox({ label }: Props) {
         {SweetIcon ? SweetIcon : <Sweet2 className="sweet" />}
         <span className="number">
           <CheckIcon className="checkIcon" />
-          <span>x{label}</span>
+
+          {label === 13 ? (
+            <span className='diamond-container'>
+              <Diamond className="diamond" />
+            </span>
+          ) : (
+            <span>x{label}</span>
+          )}
         </span>
       </label>
     </button>
