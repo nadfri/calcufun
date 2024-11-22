@@ -12,10 +12,10 @@ import Sweet11 from '@assets/icons/sweets/sweet-11.svg?react';
 import Sweet12 from '@assets/icons/sweets/sweet-12.svg?react';
 import Sweet13 from '@assets/icons/sweets/sweet-13.svg?react';
 import CheckIcon from '@assets/icons/check.svg?react';
+import { useStoreGame } from '@store/useStoreGame';
 
 type Props = {
   label: number;
-  disabled?: boolean;
 };
 
 const sweets: Record<number, JSX.Element> = {
@@ -33,12 +33,29 @@ const sweets: Record<number, JSX.Element> = {
   13: <Sweet13 className="sweet" />,
 };
 
-export default function CheckBox({ label, disabled }: Props) {
+export default function CheckBox({ label }: Props) {
   const SweetIcon = sweets[label];
+  const { numbers, setNumbers, enabledTables } = useStoreGame();
+
+  const isEnabled = enabledTables.includes(label);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setNumbers([...numbers, label]);
+    } else {
+      setNumbers(numbers.filter(num => num !== label));
+    }
+  };
 
   return (
-    <button className="CheckBox" disabled={disabled}>
-      <input type="checkbox" id={label.toString()} />
+    <button className="CheckBox" disabled={!isEnabled}>
+      <input 
+        type="checkbox" 
+        id={label.toString()} 
+        checked={numbers.includes(label)}
+        onChange={handleChange}
+        disabled={!isEnabled}
+      />
 
       <label htmlFor={label.toString()}>
         {SweetIcon ? SweetIcon : <Sweet2 className="sweet" />}

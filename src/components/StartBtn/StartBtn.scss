@@ -1,8 +1,6 @@
 .StartBtn {
-  font-family: var(--font-mario);
   font-size: 2rem;
   letter-spacing: 2px;
-  text-shadow: 4px 3px 0 black;
   background-color: palegreen;
   border: none;
   border-radius: 20px;
@@ -24,7 +22,7 @@
   .yellow {
     color: #fdc81a;
     display: inline-block;
-    animation: rotate10 1s ease-in-out forwards;
+    animation: rotate15 1s ease-in-out forwards;
   }
 
   .green {
