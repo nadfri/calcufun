@@ -1,12 +1,13 @@
-import CheckBox from '@components/CheckBox/CheckBox';
 import './Home.scss';
+import StartBtn from '@components/StartBtn/StartBtn';
+import CheckBoxList from '@components/CheckboxList/CheckBoxList';
 
 export default function Home() {
   return (
     <div className="Home">
-      {Array.from({ length: 12 }, (_, i) => (
-        <CheckBox label={i + 2} key={i} />
-      ))}
+      <CheckBoxList />
+
+      <StartBtn />
     </div>
   );
 }

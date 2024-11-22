@@ -1,0 +1,35 @@
+.StartBtn {
+  font-family: var(--font-mario);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 4px 3px 0 black;
+  background-color: palegreen;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px black;
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 1px black;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .cyan {
+    color: cyan;
+  }
+
+  .yellow {
+    color: #fdc81a;
+    display: inline-block;
+    animation: rotate10 1s ease-in-out forwards;
+  }
+
+  .green {
+    color: #00c901;
+    display: inline-block;
+    animation: rotate25 1s ease-in-out forwards;
+  }
+}

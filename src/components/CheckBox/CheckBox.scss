@@ -10,14 +10,16 @@
   .sweet {
     width: 100%;
     max-width: 200px;
+    filter: drop-shadow(3px 3px 1px black);
+    animation: rotate30 1s ease-out;
   }
 
   .checkIcon {
     display: none;
     width: 24px;
     position: absolute;
-    left: 40px;
-    top: -10px;
+    left: 46px;
+    top: -14px;
     z-index: 1;
     animation: scale 0.3s ease-in-out;
 
@@ -50,7 +52,7 @@
       font-family: var(--font-mario);
       letter-spacing: 1px;
       color: orange;
-      text-shadow: 2px 3px 0 black;
+      text-shadow: 4px 3px 0 black;
     }
   }
 

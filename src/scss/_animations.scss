@@ -15,3 +15,33 @@
 .scale {
   animation: scale 0.3s;
 }
+
+@keyframes rotate30 {
+  0% {
+    transform: rotate(30deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotate25 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(25deg);
+  }
+}
+
+@keyframes rotate10 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
+}

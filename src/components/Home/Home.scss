@@ -1,5 +1,6 @@
 .Home {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
