@@ -4,8 +4,9 @@
   background-color: transparent;
   border: none;
 
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   width: 14vw;
   max-width: 150px;

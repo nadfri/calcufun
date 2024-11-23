@@ -10,6 +10,7 @@ import Balloon8 from '@assets/icons/balloons/balloon-8.svg?react';
 import Balloon9 from '@assets/icons/balloons/balloon-9.svg?react';
 import Balloon10 from '@assets/icons/balloons/balloon-10.svg?react';
 import Balloon11 from '@assets/icons/balloons/balloon-11.svg?react';
+import { useState } from 'react';
 
 const balloons: Record<number, JSX.Element> = {
   1: <Balloon1 className="balloon" />,
@@ -31,10 +32,15 @@ type Props = {
 };
 
 export function BalloonNumber({ number, index }: Props) {
+  const [visibility, setVisibility] = useState(true);
+
   const BalloonIcon = balloons[index];
+
+  if (!visibility) return <div className="BalloonNumber"></div>;
 
   return (
     <button
+      onClick={() => setVisibility(false)}
       className={index % 2 === 0 ? 'BalloonNumber zigzag' : 'BalloonNumber zigzag2'}
     >
       {BalloonIcon ? BalloonIcon : <Balloon1 className="balloon" />}

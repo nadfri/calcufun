@@ -1,13 +1,16 @@
 import { DURATION } from '@init';
 import './BalloonList.scss';
-
 import { BalloonNumber } from '@components/BalloonNumber/BalloonNumber';
 
-export function BalloonList({ list }: { list: number[] }) {
+type Props = {
+  list: number[];
+};
+
+export function BalloonList({ list }: Props) {
   return (
     <div className="BalloonList" style={{ animationDuration: `${DURATION}s` }}>
-      {list.map((calcul, index) => (
-        <BalloonNumber key={index} number={calcul} index={index + 1} />
+      {list.map((number, index) => (
+        <BalloonNumber key={index} number={number} index={index + 1} />
       ))}
     </div>
   );
