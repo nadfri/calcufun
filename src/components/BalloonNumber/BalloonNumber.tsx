@@ -34,7 +34,9 @@ export function BalloonNumber({ number, index }: Props) {
   const BalloonIcon = balloons[index];
 
   return (
-    <button className="BalloonNumber">
+    <button
+      className={index % 2 === 0 ? 'BalloonNumber zigzag' : 'BalloonNumber zigzag2'}
+    >
       {BalloonIcon ? BalloonIcon : <Balloon1 className="balloon" />}
 
       <div className="number">{number}</div>

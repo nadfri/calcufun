@@ -25,7 +25,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@store/*": ["src/store/*"]
+      "@store/*": ["src/store/*"],
+      "@init": ["src/init/init.ts"],
     }
   },
   "include": ["src"],

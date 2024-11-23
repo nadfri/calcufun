@@ -1,5 +1,9 @@
 .Game {
-  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   .multiplication {
     font-size: 5rem;
@@ -11,7 +15,7 @@
   }
 
   .question {
-    font-size: 8rem;
+    font-size: 3rem;
     text-align: center;
   }
 }

@@ -8,7 +8,7 @@
   }
 }
 
-.fadeIn {
+.fade-in {
   animation: fade-in 0.3s;
 }
 
@@ -32,6 +32,10 @@
 
 @keyframes rotate30 {
   0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
     transform: rotate(30deg);
   }
 
@@ -45,14 +49,18 @@
     transform: rotate(0deg);
   }
 
-  100% {
+  50% {
     transform: rotate(25deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
   }
 }
 
 .rotate25 {
   display: inline-block;
-  animation: rotate25 1s ease-in-out forwards;
+  animation: rotate25 2s ease-in-out infinite;
 }
 
 @keyframes rotate15 {
@@ -60,12 +68,86 @@
     transform: rotate(0deg);
   }
 
-  100% {
+  50% {
     transform: rotate(-15deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
   }
 }
 
 .rotate15 {
   display: inline-block;
-  animation: rotate15 1s ease-in-out forwards;
+  animation: rotate15 2s ease-in-out infinite;
+}
+
+@keyframes zigzag {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(15px, 20px);
+  }
+
+  40% {
+    transform: translate(-15px, 10px);
+  }
+
+  60% {
+    transform: translate(5px, -10px);
+  }
+
+  80% {
+    transform: translate(-5px, 5px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes zigzag2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-5px, -10px);
+  }
+
+  40% {
+    transform: translate(10px, 5px);
+  }
+
+  60% {
+    transform: translate(-10px, -15px);
+  }
+
+  80% {
+    transform: translate(15px, 15px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.zigzag {
+  animation: zigzag 20s linear infinite;
+}
+
+.zigzag2 {
+  animation: zigzag2 19s linear infinite;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(20%);
+  }
+
+  100% {
+    transform: translateY(-100svh);
+  }
 }
