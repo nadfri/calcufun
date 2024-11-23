@@ -15,10 +15,6 @@ import CheckIcon from '@assets/icons/check.svg?react';
 import Diamond from '@assets/icons/diamond.svg?react';
 import { useStoreGame } from '@store/useStoreGame';
 
-type Props = {
-  label: number;
-};
-
 const sweets: Record<number, JSX.Element> = {
   2: <Sweet2 className="sweet" />,
   3: <Sweet3 className="sweet" />,
@@ -34,26 +30,21 @@ const sweets: Record<number, JSX.Element> = {
   13: <Sweet13 className="sweet" />,
 };
 
-export default function RadioSweet({ label }: Props) {
-  const SweetIcon = sweets[label];
+export function RadioSweet({ label }: { label: number }) {
   const { table, setTable, availableTables } = useStoreGame();
 
+  const SweetIcon = sweets[label];
+  const isChecked = table === label;
   const isEnabled = availableTables.includes(label);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setTable(label);
-    }
-  };
 
   return (
     <button className="RadioSweet" disabled={!isEnabled}>
       <input
+        id={label.toString()}
         type="radio"
         name="radio"
-        id={label.toString()}
-        checked={table === label}
-        onChange={handleChange}
+        onChange={() => setTable(label)}
+        checked={isChecked}
         disabled={!isEnabled}
       />
 
@@ -63,7 +54,7 @@ export default function RadioSweet({ label }: Props) {
           <CheckIcon className="checkIcon" />
 
           {label === 13 ? (
-            <span className='diamond-container'>
+            <span className="diamond-container">
               <Diamond className="diamond" />
             </span>
           ) : (

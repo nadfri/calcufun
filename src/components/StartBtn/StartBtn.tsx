@@ -5,10 +5,7 @@ export default function StartBtn() {
   const { setOpenGame } = useStoreGame();
 
   return (
-    <button
-      className="StartBtn"
-      onClick={() => setOpenGame(true)}
-    >
+    <button className="StartBtn" onClick={() => setOpenGame(true)}>
       <span className="red">S</span>
       <span className="cyan">T</span>
       <span className="yellow rotate10">A</span>

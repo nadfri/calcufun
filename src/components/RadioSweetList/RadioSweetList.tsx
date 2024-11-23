@@ -1,7 +1,7 @@
-import RadioSweet from '@components/RadioSweet/RadioSweet';
+import { RadioSweet } from '@components/RadioSweet/RadioSweet';
 import './RadioSweetList.scss';
 
-export default function RadioSweetList() {
+export function RadioSweetList() {
   return (
     <div className="RadioSweetList">
       {Array.from({ length: 12 }, (_, i) => (

@@ -14,6 +14,6 @@ export const useStoreGame = create<StoreType>((set) => ({
   setOpenGame: (openGame: boolean) => set({ openGame }),
   table: 2,
   setTable: (table: number) => set({ table }),
-  availableTables: [2,3,4,5],
+  availableTables: [2, 3],
   setAvailableTables: (availableTables: number[]) => set({ availableTables }),
 }));

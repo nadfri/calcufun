@@ -1,0 +1,21 @@
+.BalloonNumber {
+  background-color: transparent;
+  border: solid red;
+  display: grid;
+  place-items: center;
+
+  position: absolute;
+  bottom: 0;
+
+  .balloon {
+    width: 60px;
+    filter: drop-shadow(3px 3px 1px black);
+  }
+
+  .number {
+    position: absolute;
+    font-size: 1.5rem;
+    color: orange;
+    letter-spacing: 2px;
+  }
+}

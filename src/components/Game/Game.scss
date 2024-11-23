@@ -1,2 +1,17 @@
 .Game {
+  text-align: center;
+
+  .multiplication {
+    font-size: 5rem;
+    color: orangered;
+  }
+
+  .table {
+    color: green;
+  }
+
+  .question {
+    font-size: 8rem;
+    text-align: center;
+  }
 }

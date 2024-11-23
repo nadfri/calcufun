@@ -26,7 +26,7 @@
   }
 
   .green {
-    color: #00c901;
+    color: var(--green);
     display: inline-block;
     animation: rotate25 1s ease-in-out forwards;
   }

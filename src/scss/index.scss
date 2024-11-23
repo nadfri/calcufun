@@ -8,7 +8,7 @@
 
 body {
   background: url('@assets/background.webp') center;
-  background-size: 100% 100%;
+  background-size: cover;
   color: var(--text-color);
   font-family: var(--font-mario);
   text-shadow: 4px 3px 0 black;
