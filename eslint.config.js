@@ -31,6 +31,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'prettier/prettier': ['warn', { endOfLine: 'auto' }],
+      'no-multiple-empty-lines': ['warn', { max: 1 }],
     },
   },
 );
