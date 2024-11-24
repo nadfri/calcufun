@@ -2,14 +2,19 @@ import './Game.scss';
 import { useStoreGame } from '@store/useStoreGame';
 import { BalloonList } from '@components/BallloonList/BalloonList';
 import { useEffect, useRef } from 'react';
+import { GameOver } from '@components/GameOver/GameOver';
+import { DURATION } from '@init/init';
 
 export default function Game() {
-  const { count, currentTable } = useStoreGame();
+  const { count, currentTable, isGameOver, setIsGameOver } = useStoreGame();
   const ref = useRef<HTMLSpanElement>(null);
 
+  /*Multiplication Animation*/
   useEffect(() => {
-    if (ref.current) {
-      ref.current.classList.add('scale-pulse');
+    const current = ref.current;
+
+    if (current) {
+      current.classList.add('scale-pulse');
 
       const timer = setTimeout(() => {
         ref.current?.classList.remove('scale-pulse');
@@ -17,10 +22,21 @@ export default function Game() {
 
       return () => {
         clearTimeout(timer);
-        ref.current?.classList.remove('scale-pulse');
+        current.classList.remove('scale-pulse');
       };
     }
   }, [count]);
+
+  /*Game Over Timer*/
+  useEffect(() => {
+    if (isGameOver) return;
+
+    const timer = setTimeout(() => {
+      setIsGameOver(true);
+    }, DURATION);
+
+    return () => clearTimeout(timer);
+  }, [isGameOver, setIsGameOver]);
 
   return (
     <div className="Game fade-in">
@@ -34,6 +50,8 @@ export default function Game() {
       <div className="equal"> = </div>
 
       <BalloonList table={currentTable.randomSolutions} />
+
+      {isGameOver && <GameOver />}
     </div>
   );
 }

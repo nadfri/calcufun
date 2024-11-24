@@ -1,8 +1,6 @@
-import { getRandomNumbers } from '@init/init';
+import { getRandomNumbers, TABLE_OF_INITIAL } from '@init/init';
 import { randomize } from '@utils/utils';
 import { create } from 'zustand';
-
-
 
 type StoreType = {
   openGame: boolean;
@@ -10,8 +8,6 @@ type StoreType = {
 
   isGameOver: boolean;
   setIsGameOver: (isGameOver: boolean) => void;
-
-
 
   availableTables: number[];
   setAvailableTables: (availableTables: number[]) => void;
@@ -22,7 +18,7 @@ type StoreType = {
     randomSolutions: number[];
   };
 
-  setCurrentTable: (tableOf : number) => void;
+  setCurrentTable: (tableOf: number) => void;
 
   count: number;
   setCount: (count: number) => void;
@@ -37,8 +33,6 @@ export const useStoreGame = create<StoreType>((set, get) => ({
   isGameOver: false,
   setIsGameOver: (isGameOver) => set({ isGameOver }),
 
-
-
   count: 0,
   setCount: (count) => set({ count }),
 
@@ -46,31 +40,30 @@ export const useStoreGame = create<StoreType>((set, get) => ({
   setAvailableTables: (availableTables: number[]) => set({ availableTables }),
 
   currentTable: {
-    tableOf: 2,
+    tableOf: TABLE_OF_INITIAL,
     randomNumbers: getRandomNumbers(),
     randomSolutions: randomize(getRandomNumbers().map((n) => n * 2)),
   },
 
-  setCurrentTable: (tableOf) => set({
-    currentTable: {
-      tableOf,
-      randomNumbers: getRandomNumbers(),
-      randomSolutions: randomize(getRandomNumbers().map((n) => n * tableOf)),
-    },
-
-  }),
+  setCurrentTable: (tableOf) =>
+    set({
+      currentTable: {
+        tableOf,
+        randomNumbers: getRandomNumbers(),
+        randomSolutions: randomize(getRandomNumbers().map((n) => n * tableOf)),
+      },
+    }),
 
   resetGame: (keepOpen = false) => {
     const randomNumbers = getRandomNumbers();
     const tableOf = get().currentTable.tableOf;
 
-    set((state) => ({
-      ...state,
+    set(() => ({
       openGame: keepOpen,
       isGameOver: false,
       count: 0,
       currentTable: {
-        ...state.currentTable,
+        tableOf,
         randomNumbers,
         randomSolutions: randomize(randomNumbers.map((n) => n * tableOf)),
       },
