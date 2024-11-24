@@ -1,0 +1,71 @@
+.GameOver {
+  position: fixed;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  background-color: rgba($color: #000, $alpha: 50%);
+  backdrop-filter: blur(3px);
+  z-index: 2;
+
+  .container {
+    width: 80vw;
+    height: 60svh;
+    max-height: 500px;
+    border: solid 5px palegreen;
+    border-radius: 10px;
+
+    background-color: khaki;
+    box-shadow: 5px 5px 0 black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .icon {
+    width: 100px;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 4rem;
+  }
+
+  .btn-retry {
+    color: palegreen;
+    border-radius: 4px;
+    padding: 4px 10px;
+    transform: skew(-10deg);
+    background-color: seashell;
+    box-shadow: 3px 3px 0 black;
+
+    &:active {
+      text-shadow: 1px 1px 0 black;
+      box-shadow: 1px 1px 0 black;
+    }
+  }
+
+  .btn-quit {
+    color: var(--bg-color);
+
+    &:active {
+      text-shadow: 1px 1px 0 black;
+    }
+  }
+}

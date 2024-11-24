@@ -29,7 +29,7 @@ const balloons: Record<number, JSX.Element> = {
 };
 
 type Props = {
-  calcul: number;
+  solution: number;
   index: number;
 };
 
@@ -40,17 +40,17 @@ const configConfetti = {
   width: 400,
 };
 
-export function BalloonNumber({ calcul, index }: Props) {
-  const { count, setCount, numberSelected, randomNumbers } = useStoreGame();
+export function BalloonNumber({ solution, index }: Props) {
+  const { count, setCount, currentTable, setIsGameOver } = useStoreGame();
   const [isExplosed, setIsExplosed] = useState(false);
 
   const BalloonIcon = balloons[index];
 
   const handleClick = () => {
-    if (calcul === numberSelected * randomNumbers[count]) {
+    if (solution === currentTable.tableOf * currentTable.randomNumbers[count]) {
       setCount(count + 1);
       setIsExplosed(true);
-    }
+    } else setIsGameOver(true);
   };
 
   if (isExplosed)
@@ -67,7 +67,7 @@ export function BalloonNumber({ calcul, index }: Props) {
     >
       {BalloonIcon ? BalloonIcon : <Balloon1 className="balloon" />}
 
-      <div className="number">{calcul}</div>
+      <div className="solution">{solution}</div>
     </button>
   );
 }

@@ -4,7 +4,7 @@ import { BalloonList } from '@components/BallloonList/BalloonList';
 import { useEffect, useRef } from 'react';
 
 export default function Game() {
-  const { numberSelected, count, randomNumbers } = useStoreGame();
+  const { count, currentTable } = useStoreGame();
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -25,15 +25,15 @@ export default function Game() {
   return (
     <div className="Game fade-in">
       <div className="multiplication">
-        <span className="selected">{numberSelected}</span>
+        <span className="selected">{currentTable.tableOf}</span>
         <span className="random-number" ref={ref}>
-          x{randomNumbers[count]}
+          x{currentTable.randomNumbers[count]}
         </span>
       </div>
 
       <div className="equal"> = </div>
 
-      <BalloonList />
+      <BalloonList table={currentTable.randomSolutions} />
     </div>
   );
 }

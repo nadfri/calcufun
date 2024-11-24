@@ -30,35 +30,35 @@ const sweets: Record<number, JSX.Element> = {
   13: <Sweet13 className="sweet" />,
 };
 
-export function RadioSweet({ label }: { label: number }) {
-  const { numberSelected, setNumberSelected, availableTables } = useStoreGame();
+export function RadioSweet({ tableOf }: { tableOf: number }) {
+  const { availableTables, currentTable, setCurrentTable } = useStoreGame();
 
-  const SweetIcon = sweets[label];
-  const isChecked = numberSelected === label;
-  const isEnabled = availableTables.includes(label);
+  const SweetIcon = sweets[tableOf];
+  const isChecked = currentTable.tableOf === tableOf;
+  const isEnabled = availableTables.includes(tableOf);
 
   return (
     <button className="RadioSweet" disabled={!isEnabled}>
       <input
-        id={label.toString()}
+        id={tableOf.toString()}
         type="radio"
         name="radio"
-        onChange={() => setNumberSelected(label)}
+        onChange={() => setCurrentTable(tableOf)}
         checked={isChecked}
         disabled={!isEnabled}
       />
 
-      <label htmlFor={label.toString()}>
+      <label htmlFor={tableOf.toString()}>
         {SweetIcon ? SweetIcon : <Sweet2 className="sweet" />}
         <span className="number">
           <CheckIcon className="checkIcon" />
 
-          {label === 13 ? (
+          {tableOf === 13 ? (
             <span className="diamond-container">
               <Diamond className="diamond" />
             </span>
           ) : (
-            <span>x{label}</span>
+            <span>x{tableOf}</span>
           )}
         </span>
       </label>

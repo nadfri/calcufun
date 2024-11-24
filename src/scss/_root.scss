@@ -3,4 +3,23 @@
   --text-color: palegreen;
   --font-mario: 'Mario', sans-serif;
   --green: #00c901;
+  --cyan: cyan;
+  --yellow: #fdc81a;
+  --red: orangered;
+}
+
+.cyan {
+  color: var(--cyan);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.green {
+  color: var(--green);
+}
+
+.red {
+  color: var(--red);
 }

@@ -44,7 +44,8 @@ export default defineConfig({
       '@components': '/src/components',
       '@assets': '/src/assets',
       '@store': '/src/store',
-      '@init': '/src/init/init.ts',
+      '@init': '/src/init',
+      '@utils': '/src/utils',
     },
   },
   css: {

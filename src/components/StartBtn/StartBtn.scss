@@ -4,28 +4,10 @@
   background-color: palegreen;
   border: none;
   border-radius: 20px;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 1px black;
 
   &:active {
-    transform: translateY(2px);
-    box-shadow: 1px 1px 1px black;
-  }
-
-  .red {
-    color: red;
-    display: inline-block;
-    animation: rotate30 2.2s ease-in-out infinite;
-  }
-
-  .cyan {
-    color: cyan;
-  }
-
-  .yellow {
-    color: #fdc81a;
-  }
-
-  .green {
-    color: var(--green);
+    text-shadow: 1px 1px 0 black;
+    box-shadow: 1px 1px 0 black;
   }
 }
