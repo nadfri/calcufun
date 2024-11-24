@@ -1,16 +1,16 @@
 import { DURATION } from '@init';
 import './BalloonList.scss';
 import { BalloonNumber } from '@components/BalloonNumber/BalloonNumber';
+import { useStoreGame } from '@store/useStoreGame';
 
-type Props = {
-  list: number[];
-};
+export function BalloonList() {
+  const { numberSelected, randomNumbers } = useStoreGame();
+  const table = randomNumbers.map((number) => numberSelected * number);
 
-export function BalloonList({ list }: Props) {
   return (
     <div className="BalloonList" style={{ animationDuration: `${DURATION}s` }}>
-      {list.map((number, index) => (
-        <BalloonNumber key={index} number={number} index={index + 1} />
+      {table.map((calcul, index) => (
+        <BalloonNumber key={index} index={index} calcul={calcul} />
       ))}
     </div>
   );

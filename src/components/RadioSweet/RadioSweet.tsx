@@ -31,10 +31,10 @@ const sweets: Record<number, JSX.Element> = {
 };
 
 export function RadioSweet({ label }: { label: number }) {
-  const { table, setTable, availableTables } = useStoreGame();
+  const { numberSelected, setNumberSelected, availableTables } = useStoreGame();
 
   const SweetIcon = sweets[label];
-  const isChecked = table === label;
+  const isChecked = numberSelected === label;
   const isEnabled = availableTables.includes(label);
 
   return (
@@ -43,7 +43,7 @@ export function RadioSweet({ label }: { label: number }) {
         id={label.toString()}
         type="radio"
         name="radio"
-        onChange={() => setTable(label)}
+        onChange={() => setNumberSelected(label)}
         checked={isChecked}
         disabled={!isEnabled}
       />

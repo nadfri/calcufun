@@ -4,18 +4,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  color: orangered;
 
   .multiplication {
-    font-size: 5rem;
-    color: orangered;
+    font-size: 6rem;
   }
 
-  .table {
+  .selected {
     color: green;
   }
 
-  .question {
-    font-size: 3rem;
+  .random-number {
+    display: inline-block;
+  }
+
+  .equal {
+    font-size: 10rem;
     text-align: center;
+    animation: scale 1s infinite;
   }
 }
