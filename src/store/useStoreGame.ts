@@ -2,6 +2,9 @@ import { getRandomNumbers, TABLE_OF_INITIAL } from '@init/init';
 import { create } from 'zustand';
 
 type StoreType = {
+  isMute: boolean;
+  setIsMute: (isMute: boolean) => void;
+
   openGame: boolean;
   setOpenGame: (openGame: boolean) => void;
 
@@ -29,6 +32,9 @@ type StoreType = {
 };
 
 export const useStoreGame = create<StoreType>((set, get) => ({
+  isMute: false,
+  setIsMute: (isMute) => set({ isMute }),
+
   openGame: false,
   setOpenGame: (openGame) => set({ openGame }),
 

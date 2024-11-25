@@ -40,8 +40,8 @@ export function Timer() {
     return () => {
       clearInterval(timer);
       timerAUDIO.stop();
-
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGameOver, isWin]);
 
   let color = 'var(--green)';
