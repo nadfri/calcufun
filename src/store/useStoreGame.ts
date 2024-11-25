@@ -1,5 +1,6 @@
 import { getRandomNumbers, TABLE_OF_INITIAL } from '@init/init';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 type StoreType = {
   isMute: boolean;
@@ -31,58 +32,69 @@ type StoreType = {
   resetGame: (keepOpen?: boolean) => void;
 };
 
-export const useStoreGame = create<StoreType>((set, get) => ({
-  isMute: false,
-  setIsMute: (isMute) => set({ isMute }),
+export const useStoreGame = create<StoreType>()(
+  persist(
+    (set, get) => ({
+      isMute: false,
+      setIsMute: (isMute) => set({ isMute }),
 
-  openGame: false,
-  setOpenGame: (openGame) => set({ openGame }),
+      openGame: false,
+      setOpenGame: (openGame) => set({ openGame }),
 
-  isGameOver: false,
-  setIsGameOver: (isGameOver) => set({ isGameOver }),
+      isGameOver: false,
+      setIsGameOver: (isGameOver) => set({ isGameOver }),
 
-  isWin: false,
-  setIsWin: (isWin) => set({ isWin }),
+      isWin: false,
+      setIsWin: (isWin) => set({ isWin }),
 
-  count: 0,
-  setCount: (count) => set({ count }),
+      count: 0,
+      setCount: (count) => set({ count }),
 
-  availableTables: [2, 3],
-  setAvailableTables: (availableTables: number[]) => set({ availableTables }),
+      availableTables: [2],
+      setAvailableTables: (availableTables: number[]) => set({ availableTables }),
 
-  currentTable: {
-    tableOf: TABLE_OF_INITIAL,
-    randomNumbers: getRandomNumbers(),
-    solutions: getRandomNumbers()
-      .map((n) => n * 2)
-      .sort((a, b) => a - b),
-  },
-
-  setCurrentTable: (tableOf) =>
-    set({
       currentTable: {
-        tableOf,
+        tableOf: TABLE_OF_INITIAL,
         randomNumbers: getRandomNumbers(),
         solutions: getRandomNumbers()
-          .map((n) => n * tableOf)
+          .map((n) => n * 2)
           .sort((a, b) => a - b),
       },
-    }),
 
-  resetGame: (keepOpen = false) => {
-    const randomNumbers = getRandomNumbers();
-    const tableOf = get().currentTable.tableOf;
+      setCurrentTable: (tableOf) =>
+        set({
+          currentTable: {
+            tableOf,
+            randomNumbers: getRandomNumbers(),
+            solutions: getRandomNumbers()
+              .map((n) => n * tableOf)
+              .sort((a, b) => a - b),
+          },
+        }),
 
-    set(() => ({
-      openGame: keepOpen,
-      isGameOver: false,
-      isWin: false,
-      count: 0,
-      currentTable: {
-        tableOf,
-        randomNumbers,
-        solutions: randomNumbers.map((n) => n * tableOf).sort((a, b) => a - b),
+      resetGame: (keepOpen = false) => {
+        const randomNumbers = getRandomNumbers();
+        const tableOf = get().currentTable.tableOf;
+
+        set(() => ({
+          openGame: keepOpen,
+          isGameOver: false,
+          isWin: false,
+          count: 0,
+          currentTable: {
+            tableOf,
+            randomNumbers,
+            solutions: randomNumbers.map((n) => n * tableOf).sort((a, b) => a - b),
+          },
+        }));
       },
-    }));
-  },
-}));
+    }),
+    {
+      name: 'calcufun-storage',
+      partialize: (state) => ({
+        availableTables: state.availableTables,
+        isMute: state.isMute,
+      }),
+    },
+  ),
+);
