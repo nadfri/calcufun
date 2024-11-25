@@ -12,7 +12,6 @@ type StoreType = {
   setAvailableTables: (availableTables: number[]) => void;
 
   currentTable: {
-    key: number;
     tableOf: number;
     randomNumbers: number[];
     solutions: number[];
@@ -40,7 +39,6 @@ export const useStoreGame = create<StoreType>((set, get) => ({
   setAvailableTables: (availableTables: number[]) => set({ availableTables }),
 
   currentTable: {
-    key: Math.random(),
     tableOf: TABLE_OF_INITIAL,
     randomNumbers: getRandomNumbers(),
     solutions: getRandomNumbers()
@@ -51,7 +49,6 @@ export const useStoreGame = create<StoreType>((set, get) => ({
   setCurrentTable: (tableOf) =>
     set({
       currentTable: {
-        key: Math.random(),
         tableOf,
         randomNumbers: getRandomNumbers(),
         solutions: getRandomNumbers()
@@ -69,7 +66,6 @@ export const useStoreGame = create<StoreType>((set, get) => ({
       isGameOver: false,
       count: 0,
       currentTable: {
-        key: Math.random(),
         tableOf,
         randomNumbers,
         solutions: randomNumbers.map((n) => n * tableOf).sort((a, b) => a - b),
