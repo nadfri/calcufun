@@ -4,28 +4,30 @@ import { DURATION } from '@init/init';
 import { useStoreGame } from '@store/useStoreGame';
 import { useEffect, useRef } from 'react';
 
-export function BalloonList({ table }: { table: number[] }) {
-  const { isGameOver } = useStoreGame();
+export function BalloonList() {
+  const { isGameOver, currentTable } = useStoreGame();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const current = ref.current;
 
-    if (current && isGameOver) {
-      current.style.animationPlayState = 'paused';
-    }
-
-    return () => {
-      if (current) {
+    if (current) {
+      if (isGameOver) {
+        current.style.animationPlayState = 'paused';
+      } else {
         current.style.animationPlayState = 'running';
       }
-    };
-  }, [isGameOver]);
+
+      current.style.animation = 'none';
+      void current.offsetWidth; /*Force Reflow CSS*/
+      current.style.animation = `float-up ${DURATION}ms linear`;
+    }
+  }, [isGameOver, currentTable.key]);
 
   return (
     <div className="BalloonList" style={{ animationDuration: `${DURATION}ms` }} ref={ref}>
-      {table.map((solution, index) => (
-        <BalloonNumber key={index} index={index} solution={solution} />
+      {currentTable.solutions.map((solution, index) => (
+        <BalloonNumber key={index + currentTable.key} index={index} solution={solution} />
       ))}
     </div>
   );

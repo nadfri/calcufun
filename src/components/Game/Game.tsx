@@ -49,7 +49,7 @@ export default function Game() {
 
       <div className="equal"> = </div>
 
-      <BalloonList table={currentTable.randomSolutions} />
+      <BalloonList />
 
       {isGameOver && <GameOver />}
     </div>
