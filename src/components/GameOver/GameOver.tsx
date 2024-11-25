@@ -1,7 +1,14 @@
-import { Modal } from '@components/Modal/Modal';
 import './GameOver.scss';
+import { Modal } from '@components/Modal/Modal';
+import game_overURL from '@assets/sounds/game_over.mp3';
+import { useAudio } from '@hooks/useAudio';
 
 export function GameOver() {
+  const gameOverAudio = useAudio(game_overURL);
+
+  gameOverAudio.playBackRate(1.5);
+  gameOverAudio.play();
+
   return (
     <Modal className="GameOver">
       <h1>

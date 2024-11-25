@@ -1,4 +1,8 @@
 import './BalloonNumber.scss';
+import { useState } from 'react';
+import { useAudio } from '@hooks/useAudio';
+import { useStoreGame } from '@store/useStoreGame';
+
 import Balloon0 from '@assets/icons/balloons/balloon-0.svg?react';
 import Balloon1 from '@assets/icons/balloons/balloon-1.svg?react';
 import Balloon2 from '@assets/icons/balloons/balloon-2.svg?react';
@@ -10,9 +14,9 @@ import Balloon7 from '@assets/icons/balloons/balloon-7.svg?react';
 import Balloon8 from '@assets/icons/balloons/balloon-8.svg?react';
 import Balloon9 from '@assets/icons/balloons/balloon-9.svg?react';
 import Balloon10 from '@assets/icons/balloons/balloon-10.svg?react';
-import { useState } from 'react';
+
+import explosionURL from '@assets/sounds/explosion.mp3';
 import ConfettiExplosion from 'react-confetti-explosion';
-import { useStoreGame } from '@store/useStoreGame';
 
 const balloons: Record<number, JSX.Element> = {
   0: <Balloon0 className="balloon" />,
@@ -44,12 +48,17 @@ export function BalloonNumber({ solution, index }: Props) {
   const { count, setCount, currentTable, setIsGameOver } = useStoreGame();
   const [isExplosed, setIsExplosed] = useState(false);
 
+  const explosionAudio = useAudio(explosionURL);
+
   const BalloonIcon = balloons[index];
 
   const handleClick = () => {
-    if (solution === currentTable.tableOf * currentTable.randomNumbers[count]) {
+    const currentSolution = currentTable.tableOf * currentTable.randomNumbers[count];
+
+    if (solution === currentSolution) {
       setCount(count + 1);
       setIsExplosed(true);
+      explosionAudio.play();
     } else setIsGameOver(true);
   };
 

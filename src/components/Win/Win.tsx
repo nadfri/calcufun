@@ -1,7 +1,13 @@
+import { useAudio } from '@hooks/useAudio';
 import './Win.scss';
 import { Modal } from '@components/Modal/Modal';
+import winURL from '@assets/sounds/win.mp3';
 
 export function Win() {
+  const winAudio = useAudio(winURL);
+
+  winAudio.play();
+
   return (
     <Modal className="Win">
       <h1>

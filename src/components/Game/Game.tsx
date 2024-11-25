@@ -6,13 +6,16 @@ import { GameOver } from '@components/GameOver/GameOver';
 import { BackHome } from '@components/BackHome/BackHome';
 import { Win } from '@components/Win/Win';
 import { Timer } from '@components/Timer/Timer';
+import { LENGTH } from '@init/init';
 
 export default function Game() {
-  const { count, currentTable, isGameOver, isWin } = useStoreGame();
+  const { count, currentTable, isGameOver, isWin, setIsWin } = useStoreGame();
   const ref = useRef<HTMLSpanElement>(null);
 
-  /*CSS Animation*/
   useEffect(() => {
+    if (count === LENGTH) setIsWin(true);
+
+    /*CSS Animation*/
     const current = ref.current;
 
     if (current) {
@@ -27,7 +30,7 @@ export default function Game() {
         current.classList.remove('scale-pulse');
       };
     }
-  }, [count]);
+  }, [count, setIsWin]);
 
   return (
     <div className="Game fade-in">
@@ -36,7 +39,7 @@ export default function Game() {
       <div className="multiplication">
         <span className="selected">{currentTable.tableOf}</span>
         <span className="random-number" ref={ref}>
-          x{currentTable.randomNumbers[count]}
+          x{currentTable.randomNumbers[count] || '⭐'}
         </span>
       </div>
 

@@ -46,6 +46,7 @@ export default defineConfig({
       '@store': '/src/store',
       '@init': '/src/init',
       '@utils': '/src/utils',
+      '@hooks': '/src/hooks',
     },
   },
   css: {
