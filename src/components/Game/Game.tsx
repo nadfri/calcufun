@@ -5,13 +5,13 @@ import { useEffect, useRef } from 'react';
 import { GameOver } from '@components/GameOver/GameOver';
 import { BackHome } from '@components/BackHome/BackHome';
 import { Win } from '@components/Win/Win';
-import { DURATION } from '@init/init';
+import { Timer } from '@components/Timer/Timer';
 
 export default function Game() {
-  const { count, currentTable, isGameOver, setIsGameOver, isWin } = useStoreGame();
+  const { count, currentTable, isGameOver, isWin } = useStoreGame();
   const ref = useRef<HTMLSpanElement>(null);
 
-  /*Multiplication Animation*/
+  /*CSS Animation*/
   useEffect(() => {
     const current = ref.current;
 
@@ -29,14 +29,6 @@ export default function Game() {
     }
   }, [count]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsGameOver(true);
-    }, DURATION);
-
-    return () => clearTimeout(timer);
-  }, [setIsGameOver, currentTable]);
-
   return (
     <div className="Game fade-in">
       <BackHome />
@@ -48,7 +40,7 @@ export default function Game() {
         </span>
       </div>
 
-      <div className="equal"> = </div>
+      <Timer />
 
       <BalloonList />
 
