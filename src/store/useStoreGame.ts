@@ -8,6 +8,9 @@ type StoreType = {
   isGameOver: boolean;
   setIsGameOver: (isGameOver: boolean) => void;
 
+  isWin: boolean;
+  setIsWin: (isWin: boolean) => void;
+
   availableTables: number[];
   setAvailableTables: (availableTables: number[]) => void;
 
@@ -31,6 +34,9 @@ export const useStoreGame = create<StoreType>((set, get) => ({
 
   isGameOver: false,
   setIsGameOver: (isGameOver) => set({ isGameOver }),
+
+  isWin: false,
+  setIsWin: (isWin) => set({ isWin }),
 
   count: 0,
   setCount: (count) => set({ count }),
@@ -64,6 +70,7 @@ export const useStoreGame = create<StoreType>((set, get) => ({
     set(() => ({
       openGame: keepOpen,
       isGameOver: false,
+      isWin: false,
       count: 0,
       currentTable: {
         tableOf,
