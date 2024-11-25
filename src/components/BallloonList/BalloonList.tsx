@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 export function BalloonList() {
   const { isGameOver, currentTable } = useStoreGame();
   const ref = useRef<HTMLDivElement>(null);
-  const randomKey = currentTable.randomNumbers.join(''); /*Force re-render*/
+  const randomKey = currentTable.randomNumbers.join(''); /*Force list re-render*/
 
   useEffect(() => {
     const current = ref.current;
@@ -21,7 +21,7 @@ export function BalloonList() {
         current.style.animation = `float-up ${DURATION}ms linear forwards`;
       }
     }
-  }, [isGameOver, randomKey]);
+  }, [isGameOver, currentTable]);
 
   return (
     <div className="BalloonList" ref={ref}>
