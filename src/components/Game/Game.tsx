@@ -4,6 +4,7 @@ import { BalloonList } from '@components/BallloonList/BalloonList';
 import { useEffect, useRef } from 'react';
 import { GameOver } from '@components/GameOver/GameOver';
 import { DURATION } from '@init/init';
+import { BackHome } from '@components/BackHome/BackHome';
 
 export default function Game() {
   const { count, currentTable, isGameOver, setIsGameOver } = useStoreGame();
@@ -40,6 +41,8 @@ export default function Game() {
 
   return (
     <div className="Game fade-in">
+      <BackHome />
+
       <div className="multiplication">
         <span className="selected">{currentTable.tableOf}</span>
         <span className="random-number" ref={ref}>
