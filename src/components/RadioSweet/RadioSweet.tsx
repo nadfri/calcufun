@@ -31,19 +31,24 @@ const sweets: Record<number, JSX.Element> = {
 };
 
 export function RadioSweet({ tableOf }: { tableOf: number }) {
-  const { availableTables, currentTable, setCurrentTable } = useStoreGame();
+  const { availableTables, currentTable, setCurrentTable, setOpenGame } = useStoreGame();
 
   const SweetIcon = sweets[tableOf];
   const isChecked = currentTable.tableOf === tableOf;
   const isEnabled = availableTables.includes(tableOf);
 
+  const handleClick = () => {
+    setCurrentTable(tableOf);
+    setOpenGame(true);
+  };
+
   return (
-    <button className="RadioSweet" disabled={!isEnabled}>
+    <button className="RadioSweet" disabled={!isEnabled} onClick={handleClick}>
       <input
         id={tableOf.toString()}
         type="radio"
         name="radio"
-        onChange={() => setCurrentTable(tableOf)}
+        // onChange={handleClick}
         checked={isChecked}
         disabled={!isEnabled}
       />
