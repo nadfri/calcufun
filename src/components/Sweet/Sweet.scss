@@ -1,0 +1,54 @@
+.Sweet {
+  position: relative;
+  background-color: transparent;
+  max-width: 200px;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:disabled {
+    filter: grayscale(1);
+  }
+
+  .SweetIcon {
+    width: 100%;
+
+    filter: drop-shadow(3px 3px 1px rgb(0 0 0 / 50%));
+    animation: rotate30 1s ease-out;
+  }
+
+  .checkIcon {
+    display: none;
+    width: 24px;
+    position: absolute;
+    right: 8px;
+    top: 24px;
+    z-index: 1;
+    animation: scale 1s ease-in-out;
+
+    @media screen and (width >= 600px) {
+      width: 36px;
+      right: 30px;
+      top: 50px;
+    }
+  }
+
+  .number {
+    position: absolute;
+    font-size: 2rem;
+
+    color: orange;
+  }
+
+  .DiamondIcon {
+    position: absolute;
+    width: 24px;
+
+    @media screen and (width >= 600px) {
+      width: 36px;
+    }
+  }
+}

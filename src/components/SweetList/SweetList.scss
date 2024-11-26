@@ -1,0 +1,12 @@
+.SweetList {
+  flex: 1;
+  display: grid;
+  place-items: center;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex: 1;
+  }
+}
