@@ -4,13 +4,16 @@
   background-color: transparent;
   border: none;
 
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 
   width: 14vw;
   max-width: 150px;
   margin-bottom: 10px;
+  min-height: 50px;
+
+  aspect-ratio: 3/4; /* Prevent resizing */
 
   .balloonIcon {
     width: 100%;

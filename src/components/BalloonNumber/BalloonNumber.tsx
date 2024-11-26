@@ -1,5 +1,5 @@
 import './BalloonNumber.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAudio } from '@hooks/useAudio';
 import { useStoreGame } from '@store/useStoreGame';
 
@@ -22,6 +22,7 @@ const configConfetti = {
 export function BalloonNumber({ solution, index }: Props) {
   const { count, setCount, currentTable, setIsGameOver } = useStoreGame();
   const [isExplosed, setIsExplosed] = useState(false);
+  const [toRemove, setToRemove] = useState(false);
 
   const explosionAudio = useAudio(explosionURL);
 
@@ -37,10 +38,20 @@ export function BalloonNumber({ solution, index }: Props) {
     } else setIsGameOver(true);
   };
 
+  useEffect(() => {
+    if (isExplosed) {
+      const timer = setTimeout(() => {
+        setToRemove(true);
+      }, configConfetti.duration);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isExplosed]);
+
   if (isExplosed)
     return (
       <div className="BalloonNumber">
-        <ConfettiExplosion {...configConfetti} />
+        {!toRemove && <ConfettiExplosion {...configConfetti} />}
       </div>
     );
 
