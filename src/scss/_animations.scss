@@ -89,17 +89,50 @@
   animation: rotate30 2s ease-in-out infinite;
 }
 
-@keyframes zigzag {
+@keyframes float-up {
+  0% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform: translateY(calc(-100svh + 75%));
+  }
+}
+
+/* Balloons Animation */
+@keyframes zigzag0 {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(15px);
+  }
+
+  60% {
+    transform: translateX(-15px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes zigzag1 {
   0% {
     transform: translate(0, 0);
   }
 
   20% {
-    transform: translate(15px, 20px);
+    transform: translate(10px, 15px);
   }
 
   40% {
-    transform: translate(-15px, 10px);
+    transform: translate(-10px, 10px);
   }
 
   60% {
@@ -121,19 +154,19 @@
   }
 
   20% {
-    transform: translate(-5px, -10px);
+    transform: translate(-5px, -20px);
   }
 
   40% {
-    transform: translate(10px, 5px);
+    transform: translate(5px, -10px);
   }
 
   60% {
-    transform: translate(-10px, -15px);
+    transform: translate(-5px, 0);
   }
 
   80% {
-    transform: translate(15px, 15px);
+    transform: translate(5px, -20px);
   }
 
   100% {
@@ -141,20 +174,124 @@
   }
 }
 
-.zigzag {
-  animation: zigzag 20s linear infinite;
-}
-
-.zigzag2 {
-  animation: zigzag2 19s linear infinite;
-}
-
-@keyframes float-up {
+@keyframes zigzag3 {
   0% {
-    transform: translateY(20%);
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(5px, 0);
+  }
+
+  40% {
+    transform: translate(-5px, -5px);
+  }
+
+  60% {
+    transform: translate(5px, -5px);
+  }
+
+  80% {
+    transform: translate(-5px, 5px);
   }
 
   100% {
-    transform: translateY(calc(-100svh + 75%));
+    transform: translate(0, 0);
   }
+}
+
+@keyframes zigzag4 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-15px, -25px);
+  }
+
+  40% {
+    transform: translate(15px, 0);
+  }
+
+  60% {
+    transform: translate(0, -5px);
+  }
+
+  80% {
+    transform: translate(-5px, -10px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes zigzag5 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-10px, 20px);
+  }
+
+  40% {
+    transform: translate(10px, 10px);
+  }
+
+  60% {
+    transform: translate(-5px, -15px);
+  }
+
+  80% {
+    transform: translate(5px, 7px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.zigzag0 {
+  animation: zigzag0 10s infinite;
+}
+
+.zigzag5 {
+  animation: zigzag0 14s infinite;
+}
+
+.zigzag1 {
+  animation: zigzag1 11s infinite;
+}
+
+.zigzag8 {
+  animation: zigzag1 15s infinite;
+}
+
+.zigzag6 {
+  animation: zigzag2 12s infinite;
+}
+
+.zigzag2 {
+  animation: zigzag2 16s infinite;
+}
+
+.zigzag3 {
+  animation: zigzag3 9s infinite;
+}
+
+.zigzag7 {
+  animation: zigzag3 14s infinite;
+}
+
+.zigzag9 {
+  animation: zigzag4 17s infinite;
+}
+
+.zigzag4 {
+  animation: zigzag4 20s infinite;
+}
+
+.zigzag10 {
+  animation: zigzag5 18s infinite;
 }
