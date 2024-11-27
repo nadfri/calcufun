@@ -1,5 +1,5 @@
 import './Game.scss';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useStoreGame } from '@store/useStoreGame';
 import { BalloonList } from '@components/BallloonList/BalloonList';
 import { GameOver } from '@components/GameOver/GameOver';
@@ -8,30 +8,14 @@ import { Win } from '@components/Win/Win';
 import { Timer } from '@components/Timer/Timer';
 import { LENGTH } from '@init/init';
 import { MuteBtn } from '@components/MuteBtn/MuteBtn';
+import { CalculDisplay } from '@components/CalculDisplay/CalculDisplay';
 
 export default function Game() {
   const { count, currentTable, isGameOver, isWin, setIsWin } = useStoreGame();
-  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (count === LENGTH) {
       setIsWin(true);
-    }
-
-    /*CSS Animation*/
-    const current = ref.current;
-
-    if (current) {
-      current.classList.add('scale-pulse');
-
-      const timer = setTimeout(() => {
-        ref.current?.classList.remove('scale-pulse');
-      }, 500);
-
-      return () => {
-        clearTimeout(timer);
-        current.classList.remove('scale-pulse');
-      };
     }
   }, [count, setIsWin]);
 
@@ -40,12 +24,7 @@ export default function Game() {
       <BackHome />
       <MuteBtn />
 
-      <div className="multiplication">
-        <span className="selected">{currentTable.tableOf}</span>
-        <span className="random-number" ref={ref}>
-          x{currentTable.randomNumbers[count] || '⭐'}
-        </span>
-      </div>
+      <CalculDisplay currentTable={currentTable} count={count} />
 
       <Timer />
 

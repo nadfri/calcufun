@@ -2,13 +2,13 @@ import { DURATION, getRandomNumbers, NUMBERS, TABLE_INITIAL } from '@init/init';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type TableData = {
+type TableDataType = {
   tableOf: number;
   islocked: boolean;
   stars: number;
 };
 
-type CurrentTable = {
+export type CurrentTableType = {
   tableOf: number;
   randomNumbers: number[];
   solutions: number[];
@@ -33,10 +33,10 @@ type StoreType = {
   currentTime: number;
   setCurrentTime: (currentTime: number) => void;
 
-  tablesData: TableData[];
-  updateTableData: (tableOf: number, data: Partial<TableData>) => void;
+  tablesData: TableDataType[];
+  updateTableData: (tableOf: number, data: Partial<TableDataType>) => void;
 
-  currentTable: CurrentTable;
+  currentTable: CurrentTableType;
   setCurrentTable: (tableOf: number) => void;
 
   resetGame: (keepOpen?: boolean) => void;
@@ -72,7 +72,7 @@ export const useStoreGame = create<StoreType>()(
         { tableOf: 13, islocked: true, stars: 0 },
       ],
 
-      updateTableData: (tableOf: number, data: Partial<TableData>) =>
+      updateTableData: (tableOf: number, data: Partial<TableDataType>) =>
         set((state) => ({
           tablesData: state.tablesData.map((table) =>
             table.tableOf === tableOf ? { ...table, ...data } : table,

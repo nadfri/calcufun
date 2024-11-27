@@ -1,0 +1,12 @@
+.CalculDisplay {
+  color: var(--red);
+  font-size: 6rem;
+
+  .selected {
+    color: green;
+  }
+
+  .random-number {
+    display: inline-block;
+  }
+}
