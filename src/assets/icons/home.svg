@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 512 512" xml:space="preserve">
 <path style="fill:#61ACD2;" d="M498.063,259.301v-18.07c0-6.195-2.846-12.046-7.72-15.871L256.959,42.251L23.129,225.582
 	c-4.876,3.823-7.725,9.677-7.725,15.875v17.845c0,11.141,9.031,20.172,20.172,20.172h442.315
 	C489.032,279.473,498.063,270.442,498.063,259.301z"/>
 <polygon style="fill:#F4A026;" points="73.352,491.461 73.352,259.465 256.213,116.095 438.648,259.23 438.648,491.461 "/>
-<rect x="192.183" y="302.946" style="fill:#EFEFEF;" width="129.1" height="189.249"/>
+<rect x="192.183" y="302.946" style="fill:#EFEFEF;" />
 <polygon style="fill:#F4A026;" points="433.513,170.911 433.513,21.272 374.831,21.272 374.831,126.9 "/>
 <path d="M498.665,213.084l-51.215-40.182V20.539c0-8.103-5.836-14.67-13.937-14.67h-58.682c-8.101,0-15.404,6.568-15.404,14.67v83.3
 	l-93.778-73.864c-5.314-4.168-12.605-4.169-17.924-0.003L13.622,213.303C5.141,219.95,0,229.945,0,240.722v17.845

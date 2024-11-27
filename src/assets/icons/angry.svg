@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg viewBox="0 0 1500 1500" id="Layer_1" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
   <style>
     .st0{fill:url(#SVGID_1_)}
     .st1{fill:#262c38}
@@ -11,10 +11,6 @@
     }
     .mouth {
       animation: mouthAnimation 3s ease-in-out infinite;
-    }
-
-    #Layer_1 {
-      width: 6rem;
     }
   </style>
   <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="750" y1="1501.519" x2="750" y2="4.759" gradientTransform="matrix(1 0 0 -1 0 1499.72)">
