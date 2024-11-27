@@ -6,6 +6,7 @@ import { useStoreGame } from '@store/useStoreGame';
 import { Stars } from '@components/Stars/Stars';
 import { DURATION } from '@init/init';
 import { useEffect, useState } from 'react';
+import { NextBtn } from '@components/NextBtn/NextBtn';
 
 export function Win() {
   const { currentTime, currentTable, updateTableData } = useStoreGame();
@@ -25,10 +26,8 @@ export function Win() {
 
     setStars(newStars);
 
-    // Mise à jour des étoiles dans le store si meilleur score
     updateTableData(currentTable.tableOf, { stars: Math.max(newStars, stars) });
 
-    // Débloquer le niveau suivant si pas le dernier niveau (13)
     if (currentTable.tableOf < 13) {
       const nextTable = currentTable.tableOf + 1;
       updateTableData(nextTable, { islocked: false });
@@ -49,6 +48,8 @@ export function Win() {
       <p className="time">In {currentTime}s</p>
 
       <Stars numberOfStars={stars} />
+
+      {currentTable.tableOf < 13 && <NextBtn />}
     </Modal>
   );
 }

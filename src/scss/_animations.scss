@@ -99,6 +99,24 @@
   }
 }
 
+@keyframes left-right {
+  0% {
+    translate: 0;
+  }
+
+  50% {
+    translate: 5px;
+  }
+
+  100% {
+    translate: 0;
+  }
+}
+
+.left-right {
+  animation: left-right 1s ease-in-out infinite;
+}
+
 /* Balloons Animation */
 @keyframes zigzag0 {
   0% {

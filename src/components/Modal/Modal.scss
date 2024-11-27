@@ -11,7 +11,7 @@
 
   .container {
     width: 85vw;
-    height: 70svh;
+    min-height: 70svh;
     max-height: 500px;
     border: solid 5px palegreen;
     border-radius: 10px;
@@ -33,38 +33,30 @@
   .btn-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-  }
+    margin-top: 20px;
 
-  .icon {
-    width: 100px;
-  }
-
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 4rem;
-  }
-
-  .btn-retry {
-    color: palegreen;
-    border-radius: 4px;
-    padding: 4px 10px;
-    transform: skew(-10deg);
-    background-color: seashell;
-    box-shadow: 3px 3px 0 black;
-
-    &:active {
-      text-shadow: 1px 1px 0 black;
-      box-shadow: 1px 1px 0 black;
+    button {
+      background-color: transparent;
+      border: none;
+      font-size: 3.5rem;
     }
-  }
 
-  .btn-quit {
-    color: var(--bg-color);
+    .btn-retry {
+      color: palegreen;
+      padding: 4px 10px;
+      transform: skew(-10deg);
 
-    &:active {
-      text-shadow: 1px 1px 0 black;
+      &:active {
+        text-shadow: 1px 1px 0 black;
+      }
+    }
+
+    .btn-quit {
+      color: var(--bg-color);
+
+      &:active {
+        text-shadow: 1px 1px 0 black;
+      }
     }
   }
 }
