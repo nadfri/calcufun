@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './Timer.scss';
 import { DURATION } from '@init/init';
 import { useStoreGame } from '@store/useStoreGame';
@@ -8,20 +9,28 @@ import { useAudio } from '@hooks/useAudio';
 export function Timer() {
   const { isGameOver, isWin, setIsGameOver, setCurrentTime } = useStoreGame();
   const [time, setTime] = useState(DURATION);
-  const timerAUDIO = useAudio(timerURL);
-  timerAUDIO.loop();
 
+  const timerAUDIO = useAudio(timerURL);
+
+  /*Game Over*/
   useEffect(() => {
     if (time <= 0) {
       setIsGameOver(true);
     }
   }, [time, setIsGameOver]);
 
+  /*Win*/
   useEffect(() => {
     if (isWin) setCurrentTime((DURATION - time) / 1000);
+  }, [isWin]);
+
+  /*Timer*/
+  useEffect(() => {
     if (isGameOver || isWin) return;
 
     setTime(DURATION);
+
+    timerAUDIO.loop();
     timerAUDIO.playBackRate(1);
     timerAUDIO.play();
 
@@ -31,8 +40,6 @@ export function Timer() {
         if (newTime <= 0) {
           clearInterval(timer);
           timerAUDIO.stop();
-
-          return DURATION;
         }
         return newTime;
       });
@@ -42,7 +49,6 @@ export function Timer() {
       clearInterval(timer);
       timerAUDIO.stop();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGameOver, isWin]);
 
   let color = 'var(--green)';

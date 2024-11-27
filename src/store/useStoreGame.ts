@@ -15,7 +15,6 @@ type CurrentTable = {
 };
 
 type StoreType = {
-  // États de l'interface
   isMute: boolean;
   setIsMute: (isMute: boolean) => void;
 
@@ -118,10 +117,13 @@ export const useStoreGame = create<StoreType>()(
       },
     }),
     {
-      name: 'game-storage',
+      name: 'calcufun',
       partialize: (state) => ({
         tablesData: state.tablesData,
         isMute: state.isMute,
+        currentTable: {
+          tableOf: state.currentTable.tableOf,
+        },
       }),
     },
   ),
