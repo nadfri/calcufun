@@ -1,10 +1,21 @@
-import { DURATION, getRandomNumbers, INITIAL_STARS, TABLE_OF_INITIAL } from '@init/init';
+import { DURATION, getRandomNumbers, NUMBERS, TABLE_INITIAL } from '@init/init';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type StarType = Record<number, number>;
+type TableData = {
+  tableOf: number;
+  islocked: boolean;
+  stars: number;
+};
+
+type CurrentTable = {
+  tableOf: number;
+  randomNumbers: number[];
+  solutions: number[];
+};
 
 type StoreType = {
+  // États de l'interface
   isMute: boolean;
   setIsMute: (isMute: boolean) => void;
 
@@ -17,106 +28,100 @@ type StoreType = {
   isWin: boolean;
   setIsWin: (isWin: boolean) => void;
 
-  availableTables: number[];
-  setAvailableTables: (availableTables: number[]) => void;
-
-  currentTable: {
-    tableOf: number;
-    randomNumbers: number[];
-    solutions: number[];
-  };
-
-  setCurrentTable: (tableOf: number) => void;
-
   count: number;
   setCount: (count: number) => void;
 
   currentTime: number;
   setCurrentTime: (currentTime: number) => void;
 
-  resetGame: (keepOpen?: boolean) => void;
+  tablesData: TableData[];
+  updateTableData: (tableOf: number, data: Partial<TableData>) => void;
 
-  tableStars: StarType;
-  setTableStars: (tableOf: number, stars: number) => void;
+  currentTable: CurrentTable;
+  setCurrentTable: (tableOf: number) => void;
+
+  resetGame: (keepOpen?: boolean) => void;
 };
 
 export const useStoreGame = create<StoreType>()(
   persist(
     (set, get) => ({
       isMute: false,
-      setIsMute: (isMute) => set({ isMute }),
+      setIsMute: (isMute: boolean) => set({ isMute }),
 
       openGame: false,
-      setOpenGame: (openGame) => set({ openGame }),
+      setOpenGame: (openGame: boolean) => set({ openGame }),
 
       isGameOver: false,
-      setIsGameOver: (isGameOver) => set({ isGameOver }),
+      setIsGameOver: (isGameOver: boolean) => set({ isGameOver }),
 
       isWin: false,
-      setIsWin: (isWin) => set({ isWin }),
+      setIsWin: (isWin: boolean) => set({ isWin }),
 
       count: 0,
-      setCount: (count) => set({ count }),
+      setCount: (count: number) => set({ count }),
 
       currentTime: DURATION / 1000,
       setCurrentTime: (currentTime: number) => set({ currentTime }),
 
-      availableTables: [2],
-      setAvailableTables: (availableTables: number[]) => set({ availableTables }),
+      tablesData: [
+        ...NUMBERS.map((tableOf) => ({
+          tableOf,
+          islocked: tableOf !== 2,
+          stars: 0,
+        })),
+        { tableOf: 13, islocked: true, stars: 0 },
+      ],
 
-      tableStars: INITIAL_STARS,
+      updateTableData: (tableOf: number, data: Partial<TableData>) =>
+        set((state) => ({
+          tablesData: state.tablesData.map((table) =>
+            table.tableOf === tableOf ? { ...table, ...data } : table,
+          ),
+        })),
 
       currentTable: {
-        tableOf: TABLE_OF_INITIAL,
+        tableOf: TABLE_INITIAL,
         randomNumbers: getRandomNumbers(),
-        solutions: getRandomNumbers()
-          .map((n) => n * 2)
-          .sort((a, b) => a - b),
+        solutions: NUMBERS.map((n) => n * TABLE_INITIAL),
+      },
+      setCurrentTable: (tableOf: number) => {
+        const numbers = getRandomNumbers();
+        const solutions = NUMBERS.map((n) => n * tableOf);
+
+        set({
+          currentTable: {
+            tableOf: tableOf,
+            randomNumbers: numbers,
+            solutions: solutions,
+          },
+        });
       },
 
-      setTableStars: (tableOf: number, stars: number) =>
-        set((state) => ({
-          tableStars: {
-            ...state.tableStars,
-            [tableOf]: stars,
-          },
-        })),
-
-      setCurrentTable: (tableOf) =>
-        set(() => ({
-          currentTable: {
-            tableOf,
-            randomNumbers: getRandomNumbers(),
-            solutions: getRandomNumbers()
-              .map((n) => n * tableOf)
-              .sort((a, b) => a - b),
-          },
-        })),
-
       resetGame: (keepOpen = false) => {
-        const randomNumbers = getRandomNumbers();
-        const tableOf = get().currentTable.tableOf;
+        const { currentTable } = get();
+        const solutions = NUMBERS.map((n) => n * currentTable.tableOf);
+        const numbers = getRandomNumbers();
 
-        set(() => ({
-          openGame: keepOpen,
+        set({
           isGameOver: false,
           isWin: false,
           count: 0,
           currentTime: DURATION / 1000,
+          openGame: keepOpen,
           currentTable: {
-            tableOf,
-            randomNumbers,
-            solutions: randomNumbers.map((n) => n * tableOf).sort((a, b) => a - b),
+            ...currentTable,
+            randomNumbers: numbers,
+            solutions: solutions,
           },
-        }));
+        });
       },
     }),
     {
-      name: 'calcufun-storage',
+      name: 'game-storage',
       partialize: (state) => ({
-        availableTables: state.availableTables,
+        tablesData: state.tablesData,
         isMute: state.isMute,
-        tableStars: state.tableStars,
       }),
     },
   ),

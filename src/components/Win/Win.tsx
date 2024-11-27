@@ -8,7 +8,7 @@ import { DURATION } from '@init/init';
 import { useEffect, useState } from 'react';
 
 export function Win() {
-  const { currentTime, tableStars, setTableStars, currentTable } = useStoreGame();
+  const { currentTime, currentTable, updateTableData } = useStoreGame();
   const [stars, setStars] = useState(0);
 
   useAudio(winURL).play();
@@ -25,10 +25,15 @@ export function Win() {
 
     setStars(newStars);
 
-    if (newStars > tableStars[currentTable.tableOf]) {
-      setTableStars(currentTable.tableOf, newStars);
+    // Mise à jour des étoiles dans le store si meilleur score
+    updateTableData(currentTable.tableOf, { stars: Math.max(newStars, stars) });
+
+    // Débloquer le niveau suivant si pas le dernier niveau (13)
+    if (currentTable.tableOf < 13) {
+      const nextTable = currentTable.tableOf + 1;
+      updateTableData(nextTable, { islocked: false });
     }
-  }, [currentTime, tableStars]);
+  }, [currentTime, currentTable, updateTableData, stars]);
 
   return (
     <Modal className="Win">

@@ -28,9 +28,9 @@ export function BalloonNumber({ solution, index }: Props) {
 
   const BalloonIcon = balloonIcons[index];
 
-  const handleClick = () => {
-    const currentSolution = currentTable.tableOf * currentTable.randomNumbers[count];
+  const currentSolution = currentTable.randomNumbers[count] * currentTable.tableOf;
 
+  const handleClick = () => {
     if (solution === currentSolution) {
       setCount(count + 1);
       setIsExplosed(true);
