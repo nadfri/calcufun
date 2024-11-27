@@ -2,6 +2,7 @@ import './GameOver.scss';
 import { Modal } from '@components/Modal/Modal';
 import game_overURL from '@assets/sounds/game_over.mp3';
 import { useAudio } from '@hooks/useAudio';
+import AngryIcon from '@assets/icons/angry.svg?react';
 
 export function GameOver() {
   const gameOverAudio = useAudio(game_overURL);
@@ -17,6 +18,7 @@ export function GameOver() {
         <span className="rotate15 cyan">O</span>ve
         <span className="rotate15 green">r</span>
       </h1>
+      <AngryIcon className="AngryIcon" />
     </Modal>
   );
 }
