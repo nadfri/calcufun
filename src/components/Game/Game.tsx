@@ -14,7 +14,9 @@ export default function Game() {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (count === LENGTH) setIsWin(true);
+    if (count === LENGTH) {
+      setIsWin(true);
+    }
 
     /*CSS Animation*/
     const current = ref.current;

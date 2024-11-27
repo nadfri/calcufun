@@ -1,6 +1,8 @@
-import { getRandomNumbers, TABLE_OF_INITIAL } from '@init/init';
+import { DURATION, getRandomNumbers, INITIAL_STARS, TABLE_OF_INITIAL } from '@init/init';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
+export type StarType = Record<number, number>;
 
 type StoreType = {
   isMute: boolean;
@@ -29,7 +31,13 @@ type StoreType = {
   count: number;
   setCount: (count: number) => void;
 
+  currentTime: number;
+  setCurrentTime: (currentTime: number) => void;
+
   resetGame: (keepOpen?: boolean) => void;
+
+  tableStars: StarType;
+  setTableStars: (tableOf: number, stars: number) => void;
 };
 
 export const useStoreGame = create<StoreType>()(
@@ -50,8 +58,13 @@ export const useStoreGame = create<StoreType>()(
       count: 0,
       setCount: (count) => set({ count }),
 
+      currentTime: DURATION / 1000,
+      setCurrentTime: (currentTime: number) => set({ currentTime }),
+
       availableTables: [2],
       setAvailableTables: (availableTables: number[]) => set({ availableTables }),
+
+      tableStars: INITIAL_STARS,
 
       currentTable: {
         tableOf: TABLE_OF_INITIAL,
@@ -61,8 +74,16 @@ export const useStoreGame = create<StoreType>()(
           .sort((a, b) => a - b),
       },
 
+      setTableStars: (tableOf: number, stars: number) =>
+        set((state) => ({
+          tableStars: {
+            ...state.tableStars,
+            [tableOf]: stars,
+          },
+        })),
+
       setCurrentTable: (tableOf) =>
-        set({
+        set(() => ({
           currentTable: {
             tableOf,
             randomNumbers: getRandomNumbers(),
@@ -70,7 +91,7 @@ export const useStoreGame = create<StoreType>()(
               .map((n) => n * tableOf)
               .sort((a, b) => a - b),
           },
-        }),
+        })),
 
       resetGame: (keepOpen = false) => {
         const randomNumbers = getRandomNumbers();
@@ -81,6 +102,7 @@ export const useStoreGame = create<StoreType>()(
           isGameOver: false,
           isWin: false,
           count: 0,
+          currentTime: DURATION / 1000,
           currentTable: {
             tableOf,
             randomNumbers,
@@ -94,6 +116,7 @@ export const useStoreGame = create<StoreType>()(
       partialize: (state) => ({
         availableTables: state.availableTables,
         isMute: state.isMute,
+        tableStars: state.tableStars,
       }),
     },
   ),

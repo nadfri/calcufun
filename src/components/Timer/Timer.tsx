@@ -6,7 +6,7 @@ import timerURL from '@assets/sounds/timer.mp3';
 import { useAudio } from '@hooks/useAudio';
 
 export function Timer() {
-  const { isGameOver, isWin, setIsGameOver } = useStoreGame();
+  const { isGameOver, isWin, setIsGameOver, setCurrentTime } = useStoreGame();
   const [time, setTime] = useState(DURATION);
   const timerAUDIO = useAudio(timerURL);
   timerAUDIO.loop();
@@ -18,6 +18,7 @@ export function Timer() {
   }, [time, setIsGameOver]);
 
   useEffect(() => {
+    if (isWin) setCurrentTime((DURATION - time) / 1000);
     if (isGameOver || isWin) return;
 
     setTime(DURATION);
@@ -31,7 +32,7 @@ export function Timer() {
           clearInterval(timer);
           timerAUDIO.stop();
 
-          return 0;
+          return DURATION;
         }
         return newTime;
       });

@@ -1,0 +1,12 @@
+.Stars {
+  display: flex;
+  justify-content: center;
+}
+
+.StarIcon {
+  width: 20px;
+
+  @media screen and (width >= 600px) {
+    width: 36px;
+  }
+}
