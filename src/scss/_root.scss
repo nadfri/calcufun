@@ -6,6 +6,7 @@
   --cyan: cyan;
   --yellow: #fdc81a;
   --red: orangered;
+  --blue: #3776ff;
 }
 
 .cyan {
@@ -22,4 +23,8 @@
 
 .red {
   color: var(--red);
+}
+
+.blue {
+  color: var(--blue);
 }
