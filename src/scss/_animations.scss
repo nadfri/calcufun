@@ -117,6 +117,16 @@
   animation: left-right 1s ease-in-out infinite;
 }
 
+@keyframes blur {
+  to {
+    backdrop-filter: blur(3px);
+  }
+}
+
+.blur {
+  animation: blur 0.5s forwards;
+}
+
 /* Balloons Animation */
 @keyframes zigzag0 {
   0% {

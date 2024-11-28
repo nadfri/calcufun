@@ -9,7 +9,7 @@ type Props = {
 export function Modal({ children, className }: PropsWithChildren<Props>) {
   const { resetGame } = useStoreGame();
   return (
-    <div className={`Modal fade-in ${className}`} role="dialog">
+    <div className={`Modal blur ${className}`} role="dialog">
       <div className="container">
         {children}
 
