@@ -6,6 +6,7 @@ import { useStoreGame } from '@store/useStoreGame';
 import explosionURL from '@assets/sounds/explosion.mp3';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { balloonIcons } from './balloonIcons';
+import { FINAL_LEVEL } from '@init/init';
 
 const configConfetti = {
   force: 0.4,
@@ -21,10 +22,16 @@ export function BalloonNumber({ index }: { index: number }) {
 
   const explosionAudio = useAudio(explosionURL);
 
-  const BalloonIcon = balloonIcons[index];
+  const balloonIndex = index % balloonIcons.length; /*Number of icons/zigzag*/
+  const BalloonIcon = balloonIcons[balloonIndex];
+
+  const tableOf =
+    currentTable.tableOf !== FINAL_LEVEL
+      ? currentTable.tableOf
+      : currentTable.randomNumbers2[count];
 
   const currentSolution = currentTable.solutions[index];
-  const solutionCalculed = currentTable.randomNumbers[count] * currentTable.tableOf;
+  const solutionCalculed = currentTable.randomNumbers[count] * tableOf;
 
   const handleClick = () => {
     if (solutionCalculed === currentSolution) {
@@ -52,7 +59,7 @@ export function BalloonNumber({ index }: { index: number }) {
     );
 
   return (
-    <button onClick={handleClick} className={`BalloonNumber zigzag${index}`}>
+    <button onClick={handleClick} className={`BalloonNumber zigzag${balloonIndex}`}>
       <BalloonIcon className="balloonIcon" />
 
       <div className="solution">{currentSolution}</div>

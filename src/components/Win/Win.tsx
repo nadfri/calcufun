@@ -4,7 +4,7 @@ import { Modal } from '@components/Modal/Modal';
 import winURL from '@assets/sounds/win.mp3';
 import { useStoreGame } from '@store/useStoreGame';
 import { Stars } from '@components/Stars/Stars';
-import { DURATION } from '@init/init';
+import { DURATION, FINAL_LEVEL } from '@init/init';
 import { useEffect, useState } from 'react';
 import { NextBtn } from '@components/NextBtn/NextBtn';
 
@@ -28,7 +28,7 @@ export function Win() {
 
     updateTableData(currentTable.tableOf, { stars: Math.max(newStars, stars) });
 
-    if (currentTable.tableOf < 13) {
+    if (currentTable.tableOf < FINAL_LEVEL) {
       const nextTable = currentTable.tableOf + 1;
       updateTableData(nextTable, { islocked: false });
     }
@@ -49,7 +49,7 @@ export function Win() {
 
       <Stars numberOfStars={stars} />
 
-      {currentTable.tableOf < 13 && <NextBtn />}
+      {currentTable.tableOf < FINAL_LEVEL && <NextBtn />}
     </Modal>
   );
 }

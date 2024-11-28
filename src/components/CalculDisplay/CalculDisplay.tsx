@@ -1,6 +1,7 @@
 import './CalculDisplay.scss';
 import { useRef, useEffect } from 'react';
 import { CurrentTableType } from '@store/useStoreGame';
+import { FINAL_LEVEL } from '@init/init';
 
 type Props = {
   currentTable: CurrentTableType;
@@ -9,6 +10,10 @@ type Props = {
 
 export function CalculDisplay({ currentTable, count }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
+  const tableOf =
+    currentTable.tableOf !== FINAL_LEVEL
+      ? currentTable.tableOf
+      : currentTable.randomNumbers2[count];
 
   useEffect(() => {
     /*CSS Animation*/
@@ -30,7 +35,7 @@ export function CalculDisplay({ currentTable, count }: Props) {
 
   return (
     <div className="CalculDisplay">
-      <span className="selected">{currentTable.tableOf}</span>
+      <span className="selected">{tableOf}</span>
       <span className="random-number" ref={ref}>
         x{currentTable.randomNumbers[count] || '⭐'}
       </span>

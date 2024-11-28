@@ -1,4 +1,5 @@
-import { DURATION, getRandomNumbers, NUMBERS, TABLE_INITIAL } from '@init/init';
+import { DURATION, NUMBERS, TABLE_INITIAL, FINAL_LEVEL, FINAL_NUMBERS } from '@init/init';
+import { randomize } from '@utils/utils';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -11,6 +12,7 @@ type TableDataType = {
 export type CurrentTableType = {
   tableOf: number;
   randomNumbers: number[];
+  randomNumbers2: number[];
   solutions: number[];
 };
 
@@ -81,27 +83,41 @@ export const useStoreGame = create<StoreType>()(
 
       currentTable: {
         tableOf: TABLE_INITIAL,
-        randomNumbers: getRandomNumbers(),
+        randomNumbers: randomize(NUMBERS),
+        randomNumbers2: randomize(FINAL_NUMBERS),
         solutions: NUMBERS.map((n) => n * TABLE_INITIAL),
       },
+
       setCurrentTable: (tableOf: number) => {
-        const numbers = getRandomNumbers();
-        const solutions = NUMBERS.map((n) => n * tableOf);
+        let randomNumbers = randomize(NUMBERS);
+        const randomNumbers2 = randomize(FINAL_NUMBERS);
+        let solutions = NUMBERS.map((n) => n * tableOf);
+
+        if (tableOf === FINAL_LEVEL) {
+          randomNumbers = randomize(FINAL_NUMBERS);
+          solutions = randomize(randomNumbers.map((n, i) => n * randomNumbers2[i]));
+        }
 
         set({
           currentTable: {
-            tableOf: tableOf,
-            randomNumbers: numbers,
-            solutions: solutions,
+            tableOf,
+            randomNumbers,
+            randomNumbers2,
+            solutions,
           },
         });
       },
 
       resetGame: (keepOpen = false) => {
         const { currentTable } = get();
-        const solutions = NUMBERS.map((n) => n * currentTable.tableOf);
-        const numbers = getRandomNumbers();
+        let randomNumbers = randomize(NUMBERS);
+        const randomNumbers2 = randomize(FINAL_NUMBERS);
+        let solutions = NUMBERS.map((n) => n * currentTable.tableOf);
 
+        if (currentTable.tableOf === FINAL_LEVEL) {
+          randomNumbers = randomize(FINAL_NUMBERS);
+          solutions = randomize(randomNumbers.map((n, i) => n * randomNumbers2[i]));
+        }
         set({
           isGameOver: false,
           isWin: false,
@@ -110,8 +126,9 @@ export const useStoreGame = create<StoreType>()(
           openGame: keepOpen,
           currentTable: {
             ...currentTable,
-            randomNumbers: numbers,
-            solutions: solutions,
+            randomNumbers,
+            randomNumbers2,
+            solutions,
           },
         });
       },

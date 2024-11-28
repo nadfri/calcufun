@@ -4,6 +4,7 @@ import { useStoreGame } from '@store/useStoreGame';
 import CheckIcon from '@assets/icons/check.svg?react';
 import DiamondIcon from '@assets/icons/diamond.svg?react';
 import { Stars } from '@components/Stars/Stars';
+import { FINAL_LEVEL } from '@init/init';
 
 export function Sweet({ tableOf }: { tableOf: number }) {
   const { setCurrentTable, setOpenGame, tablesData, currentTable } = useStoreGame();
@@ -25,7 +26,7 @@ export function Sweet({ tableOf }: { tableOf: number }) {
         style={{ display: currentTable.tableOf === tableOf ? 'block' : 'none' }}
       />
 
-      {tableOf === 13 ? (
+      {tableOf === FINAL_LEVEL ? (
         <DiamondIcon className="DiamondIcon" />
       ) : (
         <span className="number">x{tableOf}</span>

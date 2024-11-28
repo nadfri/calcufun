@@ -10,26 +10,16 @@ import Balloon8 from '@assets/icons/balloons/balloon-8.svg?react';
 import Balloon9 from '@assets/icons/balloons/balloon-9.svg?react';
 import Balloon10 from '@assets/icons/balloons/balloon-10.svg?react';
 
-export const balloonIcons: Record<
-  number,
-  React.ComponentType<React.SVGProps<SVGSVGElement>>
-> = {
-  0: Balloon0,
-  1: Balloon1,
-  2: Balloon2,
-  3: Balloon3,
-  4: Balloon4,
-  5: Balloon5,
-  6: Balloon6,
-  7: Balloon7,
-  8: Balloon8,
-  9: Balloon9,
-  10: Balloon10,
-  11: Balloon0,
-  12: Balloon2,
-  13: Balloon3,
-  14: Balloon4,
-  15: Balloon5,
-  16: Balloon6,
-  17: Balloon7,
-};
+export const balloonIcons: React.ComponentType<React.SVGProps<SVGSVGElement>>[] = [
+  Balloon0,
+  Balloon1,
+  Balloon2,
+  Balloon3,
+  Balloon4,
+  Balloon5,
+  Balloon6,
+  Balloon7,
+  Balloon8,
+  Balloon9,
+  Balloon10,
+];

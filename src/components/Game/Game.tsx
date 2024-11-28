@@ -6,7 +6,6 @@ import { GameOver } from '@components/GameOver/GameOver';
 import { BackHome } from '@components/BackHome/BackHome';
 import { Win } from '@components/Win/Win';
 import { Timer } from '@components/Timer/Timer';
-import { LENGTH } from '@init/init';
 import { MuteBtn } from '@components/MuteBtn/MuteBtn';
 import { CalculDisplay } from '@components/CalculDisplay/CalculDisplay';
 
@@ -14,10 +13,12 @@ export default function Game() {
   const { count, currentTable, isGameOver, isWin, setIsWin } = useStoreGame();
 
   useEffect(() => {
+    const LENGTH = currentTable.solutions.length;
     if (count === LENGTH) {
       setIsWin(true);
     }
-  }, [count, setIsWin]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count]);
 
   return (
     <div className="Game fade-in">
