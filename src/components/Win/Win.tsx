@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { NextBtn } from '@components/NextBtn/NextBtn';
 
 export function Win() {
-  const { currentTime, currentTable, updateTableData } = useStoreGame();
+  const { currentTime, currentTable, updateTableData, tablesData } = useStoreGame();
   const [stars, setStars] = useState(0);
 
   useAudio(winURL).play();
@@ -26,13 +26,21 @@ export function Win() {
 
     setStars(newStars);
 
-    updateTableData(currentTable.tableOf, { stars: Math.max(newStars, stars) });
+    const currentTableData = tablesData.find(
+      (table) => table.tableOf === currentTable.tableOf,
+    );
+    const existingStars = currentTableData?.stars || 0;
+
+    if (newStars > existingStars) {
+      updateTableData(currentTable.tableOf, { stars: newStars });
+    }
 
     if (currentTable.tableOf < FINAL_LEVEL) {
       const nextTable = currentTable.tableOf + 1;
       updateTableData(nextTable, { islocked: false });
     }
-  }, [currentTime, currentTable, updateTableData, stars]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Modal className="Win">

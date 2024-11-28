@@ -1,5 +1,5 @@
-import { DURATION, NUMBERS, TABLE_INITIAL, FINAL_LEVEL, FINAL_NUMBERS } from '@init/init';
-import { randomize } from '@utils/utils';
+import { DURATION, INITAL_TABLES, INITIAL_TABLE_OF } from '@init/init';
+import { generateTable } from '@utils/utils';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -65,14 +65,12 @@ export const useStoreGame = create<StoreType>()(
       currentTime: DURATION / 1000,
       setCurrentTime: (currentTime: number) => set({ currentTime }),
 
-      tablesData: [
-        ...NUMBERS.map((tableOf) => ({
-          tableOf,
-          islocked: tableOf !== 2,
-          stars: 0,
-        })),
-        { tableOf: 13, islocked: true, stars: 0 },
-      ],
+      tablesData: INITAL_TABLES,
+      currentTable: generateTable(INITIAL_TABLE_OF),
+
+      setCurrentTable: (tableOf: number) => {
+        set({ currentTable: generateTable(tableOf) });
+      },
 
       updateTableData: (tableOf: number, data: Partial<TableDataType>) =>
         set((state) => ({
@@ -81,55 +79,16 @@ export const useStoreGame = create<StoreType>()(
           ),
         })),
 
-      currentTable: {
-        tableOf: TABLE_INITIAL,
-        randomNumbers: randomize(NUMBERS),
-        randomNumbers2: randomize(FINAL_NUMBERS),
-        solutions: NUMBERS.map((n) => n * TABLE_INITIAL),
-      },
-
-      setCurrentTable: (tableOf: number) => {
-        let randomNumbers = randomize(NUMBERS);
-        const randomNumbers2 = randomize(FINAL_NUMBERS);
-        let solutions = NUMBERS.map((n) => n * tableOf);
-
-        if (tableOf === FINAL_LEVEL) {
-          randomNumbers = randomize(FINAL_NUMBERS);
-          solutions = randomize(randomNumbers.map((n, i) => n * randomNumbers2[i]));
-        }
-
-        set({
-          currentTable: {
-            tableOf,
-            randomNumbers,
-            randomNumbers2,
-            solutions,
-          },
-        });
-      },
-
       resetGame: (keepOpen = false) => {
         const { currentTable } = get();
-        let randomNumbers = randomize(NUMBERS);
-        const randomNumbers2 = randomize(FINAL_NUMBERS);
-        let solutions = NUMBERS.map((n) => n * currentTable.tableOf);
 
-        if (currentTable.tableOf === FINAL_LEVEL) {
-          randomNumbers = randomize(FINAL_NUMBERS);
-          solutions = randomize(randomNumbers.map((n, i) => n * randomNumbers2[i]));
-        }
         set({
           isGameOver: false,
           isWin: false,
           count: 0,
           currentTime: DURATION / 1000,
           openGame: keepOpen,
-          currentTable: {
-            ...currentTable,
-            randomNumbers,
-            randomNumbers2,
-            solutions,
-          },
+          currentTable: generateTable(currentTable.tableOf),
         });
       },
     }),
