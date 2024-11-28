@@ -1,30 +1,77 @@
-# React + TypeScript + Vite
+# Calcufun
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Calcufun** is a mental arithmetic game designed to help users improve their multiplication skills. The game features multiplication tables from 2 to 12, with each table being unlocked sequentially as the user completes the previous one. The game also includes a star rating system, where users can earn up to 3 stars based on their performance.
+You can play **2048** directly online via this link: [https://calcufun.netlify.app/](https://calcufun.netlify.app/)
 
-Currently, two official plugins are available:
+## Screenshots
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<div align="center">
+  <img src="https://calcufun.netlify.app/screenshot.webp" alt="Screenshot" height="500">
+  <img src="https://calcufun.netlify.app/screenshot2.webp" alt="Screenshot" height="500">
+  <img src="https://calcufun.netlify.app/screenshot3.webp" alt="Screenshot" height="500">
+</div>
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Multiplication tables from 2 to 12
+- Randomized numbers for each game session
+- Sequential unlocking of tables
+- Star rating system (1 to 3 stars)
+- Audio feedback for game events
+- Timer for each game session
+- Responsive design
 
-- Configure the top-level `parserOptions` property like this:
+## Libraries Used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **React**: A JavaScript library for building user interfaces.
+- **Zustand**: A small, fast, and scalable bearbones state-management solution.
+- **TypeScript**: A strongly typed programming language that builds on JavaScript.
+- **Vite**: A fast build tool and development server.
+- **Sass**: A CSS preprocessor that adds power and elegance to the basic language.
+- **ESLint**: A tool for identifying and fixing problems in JavaScript code.
+- **Prettier**: An opinionated code formatter.
+- **React Confetti Explosion**: A library for creating confetti explosions in React.
+- **Vite Plugin SVGR**: A Vite plugin to transform SVGs into React components.
+- **Vite Plugin PWA**: A Vite plugin to generate a Progressive Web App.
+- **Workbox**: A set of libraries and Node modules that make it easy to cache assets and take full advantage of features used to build Progressive Web Apps.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+
+
+### Installation
+
+### Steps
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/nadfri/calcufun.git
+   ```
+
+2. **Navigate to the project directory**
+
+   ```bash
+   cd calcufun
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+4. **Start the development server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
