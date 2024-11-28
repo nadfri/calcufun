@@ -25,8 +25,8 @@ export function BalloonList() {
 
   return (
     <div className="BalloonList" ref={ref}>
-      {currentTable.solutions.map((solution, index) => (
-        <BalloonNumber key={index + randomKey} index={index} solution={solution} />
+      {currentTable.solutions.map((_, index) => (
+        <BalloonNumber key={index + randomKey} index={index} />
       ))}
     </div>
   );

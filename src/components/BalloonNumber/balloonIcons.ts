@@ -25,4 +25,11 @@ export const balloonIcons: Record<
   8: Balloon8,
   9: Balloon9,
   10: Balloon10,
+  11: Balloon0,
+  12: Balloon2,
+  13: Balloon3,
+  14: Balloon4,
+  15: Balloon5,
+  16: Balloon6,
+  17: Balloon7,
 };
