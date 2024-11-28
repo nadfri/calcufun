@@ -31,6 +31,11 @@ export function Win() {
     );
     const existingStars = currentTableData?.stars || 0;
 
+    console.log('newStar', newStars);
+    console.log('existingStars', existingStars);
+    console.log('currentTime', currentTime);
+    console.log('durationInSeconds', durationInSeconds);
+
     if (newStars > existingStars) {
       updateTableData(currentTable.tableOf, { stars: newStars });
     }
@@ -40,7 +45,7 @@ export function Win() {
       updateTableData(nextTable, { islocked: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentTime]);
 
   return (
     <Modal className="Win">

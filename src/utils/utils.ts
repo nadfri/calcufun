@@ -15,9 +15,7 @@ export function generateTable(tableOf: number): CurrentTableType {
     const randomNumbers = randomize(FINAL_NUMBERS);
     const randomNumbers2 = randomize(FINAL_NUMBERS);
 
-    const solutions = randomNumbers
-      .map((n, i) => n * randomNumbers2[i])
-      .sort((a, b) => a - b);
+    const solutions = randomNumbers.map((n, i) => n * randomNumbers2[i]);
 
     return {
       tableOf,
@@ -31,6 +29,6 @@ export function generateTable(tableOf: number): CurrentTableType {
     tableOf,
     randomNumbers: randomize(NUMBERS),
     randomNumbers2: [],
-    solutions: NUMBERS.map((n) => n * tableOf),
+    solutions: randomize(NUMBERS.map((n) => n * tableOf)),
   };
 }
