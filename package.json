@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.scss\"",
     "format:fix": "prettier --write \"src/**/*.{scss,tsx,ts,js,jsx,json}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/logo.svg"
   },
   "dependencies": {
     "react": "^18.3.1",

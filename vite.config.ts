@@ -22,17 +22,51 @@ export default defineConfig({
         short_name: 'CalcuFun',
         description:
           'CalcuFun is an educational and fun app designed to develop mental math skills for children.',
-        theme_color: '#77DD77',
+        theme_color: '#35654d',
+        background_color: '#35654d',
+        display: 'standalone',
+        display_override: ['fullscreen', 'minimal-ui', 'standalone'],
+        orientation: 'portrait',
+        screenshots: [
+          {
+            src: 'screenshot.png',
+            sizes: '347x719',
+            type: 'image/webp',
+            platform: 'mobile',
+            form_factor: 'narrow',
+          },
+          {
+            src: 'screenshot2.png',
+            sizes: '347x719',
+            type: 'image/png',
+            platform: 'mobile',
+            form_factor: 'narrow',
+          },
+          {
+            src: 'screenshot3.png',
+            sizes: '347x719',
+            type: 'image/png',
+            platform: 'mobile',
+            form_factor: 'narrow',
+          },
+          {
+            src: 'og.png',
+            sizes: '710x630',
+            type: 'image/png',
+            platform: 'desktop',
+            form_factor: 'wide',
+          },
+        ],
       },
 
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,woff,woff2,ttf,otf}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,woff,woff2,ttf,otf,mp3}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
       },
 
       devOptions: {
-        enabled: false,
+        enabled: true,
         navigateFallback: 'index.html',
         suppressWarnings: true,
         type: 'module',
