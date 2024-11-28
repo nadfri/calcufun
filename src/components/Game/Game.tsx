@@ -9,7 +9,7 @@ import { Timer } from '@components/Timer/Timer';
 import { MuteBtn } from '@components/MuteBtn/MuteBtn';
 import { CalculDisplay } from '@components/CalculDisplay/CalculDisplay';
 
-export default function Game() {
+export function Game() {
   const { count, currentTable, isGameOver, isWin, setIsWin } = useStoreGame();
 
   useEffect(() => {
