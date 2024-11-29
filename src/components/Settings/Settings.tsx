@@ -2,10 +2,12 @@ import './Settings.scss';
 import { useStoreGame } from '@store/useStoreGame';
 import CloseIcon from '@assets/icons/close.svg?react';
 import GithubIcon from '@assets/icons/github.svg?react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { Confirm } from './Confirm/Confirm';
 
-export function Settings({ close }: { close: () => void }) {
-  const { duration, setDuration, resetAll } = useStoreGame();
+export function Settings({ closeSettings }: { closeSettings: () => void }) {
+  const { duration, setDuration } = useStoreGame();
+  const [isConfirm, setIsConfirm] = useState(false);
   const refContainer = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -14,13 +16,7 @@ export function Settings({ close }: { close: () => void }) {
 
   const handleClose = () => {
     if (refContainer.current) refContainer.current.classList.add('scale-0');
-    setTimeout(close, 200);
-  };
-
-  const handleClearStorage = () => {
-    localStorage.clear();
-    resetAll();
-    handleClose();
+    setTimeout(closeSettings, 200);
   };
 
   return (
@@ -46,8 +42,8 @@ export function Settings({ close }: { close: () => void }) {
             <option value={150}>150s</option>
           </select>
         </label>
-        <button className="clear-btn" onClick={handleClearStorage}>
-          CLEAR DATAS
+        <button className="clear-btn" onClick={() => setIsConfirm(true)}>
+          CLEAR ALL DATAS
         </button>
 
         <button className="btn-close" onClick={handleClose}>
@@ -62,6 +58,10 @@ export function Settings({ close }: { close: () => void }) {
           <span className="green">@</span>Nadfri<span className="red rotate15">JS</span>
           <GithubIcon className="GithubIcon" />
         </a>
+
+        {isConfirm && (
+          <Confirm closeSettings={handleClose} closeConfirm={() => setIsConfirm(false)} />
+        )}
       </div>
     </div>
   );

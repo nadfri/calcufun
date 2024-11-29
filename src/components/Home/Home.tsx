@@ -13,7 +13,7 @@ export default function Home() {
       <SweetList />
 
       <SettingsIcon className="SettingsIcon" onClick={() => setIsOpenSettings(true)} />
-      {isOpenSettings && <Settings close={() => setIsOpenSettings(false)} />}
+      {isOpenSettings && <Settings closeSettings={() => setIsOpenSettings(false)} />}
     </div>
   );
 }
