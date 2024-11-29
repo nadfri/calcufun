@@ -6,9 +6,9 @@ You can play **2048** directly online via this link: [https://calcufun.netlify.a
 ## Screenshots
 
 <div align="center">
-  <img src="https://calcufun.netlify.app/screenshot.webp" alt="Screenshot" height="500">
-  <img src="https://calcufun.netlify.app/screenshot2.webp" alt="Screenshot" height="500">
-  <img src="https://calcufun.netlify.app/screenshot3.webp" alt="Screenshot" height="500">
+  <img src="https://calcufun.netlify.app/screenshot.png" alt="Screenshot" height="500">
+  <img src="https://calcufun.netlify.app/screenshot2.png" alt="Screenshot" height="500">
+  <img src="https://calcufun.netlify.app/screenshot3.png" alt="Screenshot" height="500">
 </div>
 
 ## Features
