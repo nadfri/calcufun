@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './Timer.scss';
-import { DURATION } from '@init/init';
+
 import { useStoreGame } from '@store/useStoreGame';
 import { useEffect, useState } from 'react';
 import timerURL from '@assets/sounds/timer.mp3';
 import { useAudio } from '@hooks/useAudio';
 
 export function Timer() {
-  const { isGameOver, isWin, setIsGameOver, setCurrentTime } = useStoreGame();
-  const [time, setTime] = useState(DURATION);
+  const { isGameOver, isWin, setIsGameOver, setCurrentTime, duration } = useStoreGame();
+  const [time, setTime] = useState(duration);
 
   const timerAUDIO = useAudio(timerURL);
 
@@ -21,14 +21,14 @@ export function Timer() {
 
   /*Win*/
   useEffect(() => {
-    if (isWin) setCurrentTime((DURATION - time) / 1000);
+    if (isWin) setCurrentTime(duration - time);
   }, [isWin]);
 
   /*Timer*/
   useEffect(() => {
     if (isGameOver || isWin) return;
 
-    setTime(DURATION);
+    setTime(duration);
 
     timerAUDIO.loop();
     timerAUDIO.playBackRate(1);
@@ -36,7 +36,7 @@ export function Timer() {
 
     const timer = setInterval(() => {
       setTime((prevTime) => {
-        const newTime = prevTime - 1000;
+        const newTime = prevTime - 1;
         if (newTime <= 0) {
           clearInterval(timer);
           timerAUDIO.stop();
@@ -54,18 +54,18 @@ export function Timer() {
   let color = 'var(--green)';
 
   switch (true) {
-    case time <= DURATION / 3:
+    case time <= duration / 3:
       color = 'var(--red)';
       timerAUDIO.playBackRate(1.1);
       break;
-    case time <= (DURATION / 3) * 2:
+    case time <= (duration / 3) * 2:
       color = '#ff8f00';
       break;
   }
 
   return (
     <div className="Timer" style={{ color }}>
-      {time / 1000}s
+      {time}s
     </div>
   );
 }

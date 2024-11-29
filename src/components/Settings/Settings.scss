@@ -1,0 +1,68 @@
+.Settings {
+  .container {
+    position: relative;
+  }
+
+  .btn-close {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+
+    .CloseIcon {
+      width: 36px;
+    }
+  }
+
+  .label {
+    font-size: 2rem;
+  }
+
+  .select {
+    background-color: transparent;
+    border: none;
+    font-family: var(--font-mario);
+    color: var(--red);
+    font-size: 2rem;
+    text-shadow: 3px 3px 0 black;
+    margin-left: 8px;
+
+    option:checked {
+      color: var(--green);
+    }
+  }
+
+  .clear-btn {
+    color: seashell;
+    border: none;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 0 0 4px 0 black;
+    border-radius: 4px;
+    background: linear-gradient(
+      180deg,
+      rgb(255 0 0 / 100%) 37%,
+      rgb(161 14 14 / 100%) 45%
+    );
+
+    padding: 5px 10px;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--yellow);
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px black;
+
+    .GithubIcon {
+      width: 50px;
+    }
+  }
+}

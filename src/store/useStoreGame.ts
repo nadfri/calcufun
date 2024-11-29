@@ -1,4 +1,4 @@
-import { DURATION, INITAL_TABLES, INITIAL_TABLE_OF } from '@init/init';
+import { INITAL_TABLES, INITIAL_DURATION, INITIAL_TABLE_OF } from '@init/init';
 import { generateTable } from '@utils/utils';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -29,6 +29,9 @@ type StoreType = {
   isWin: boolean;
   setIsWin: (isWin: boolean) => void;
 
+  duration: number;
+  setDuration: (duration: number) => void;
+
   count: number;
   setCount: (count: number) => void;
 
@@ -42,6 +45,7 @@ type StoreType = {
   setCurrentTable: (tableOf: number) => void;
 
   resetGame: (keepOpen?: boolean) => void;
+  resetAll: () => void;
 };
 
 export const useStoreGame = create<StoreType>()(
@@ -59,10 +63,13 @@ export const useStoreGame = create<StoreType>()(
       isWin: false,
       setIsWin: (isWin: boolean) => set({ isWin }),
 
+      duration: INITIAL_DURATION,
+      setDuration: (duration: number) => set({ duration }),
+
       count: 0,
       setCount: (count: number) => set({ count }),
 
-      currentTime: DURATION / 1000,
+      currentTime: INITIAL_DURATION,
       setCurrentTime: (currentTime: number) => set({ currentTime }),
 
       tablesData: INITAL_TABLES,
@@ -86,9 +93,23 @@ export const useStoreGame = create<StoreType>()(
           isGameOver: false,
           isWin: false,
           count: 0,
-          currentTime: DURATION / 1000,
+          currentTime: INITIAL_DURATION,
           openGame: keepOpen,
           currentTable: generateTable(currentTable.tableOf),
+        });
+      },
+
+      resetAll: () => {
+        set({
+          isMute: false,
+          openGame: false,
+          isGameOver: false,
+          isWin: false,
+          duration: INITIAL_DURATION,
+          count: 0,
+          currentTime: INITIAL_DURATION,
+          tablesData: INITAL_TABLES,
+          currentTable: generateTable(INITIAL_TABLE_OF),
         });
       },
     }),
@@ -97,6 +118,7 @@ export const useStoreGame = create<StoreType>()(
       partialize: (state) => ({
         tablesData: state.tablesData,
         isMute: state.isMute,
+        duration: state.duration,
         currentTable: {
           tableOf: state.currentTable.tableOf,
         },

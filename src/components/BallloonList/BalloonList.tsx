@@ -1,11 +1,10 @@
 import './BalloonList.scss';
 import { BalloonNumber } from '@components/BalloonNumber/BalloonNumber';
-import { DURATION } from '@init/init';
 import { useStoreGame } from '@store/useStoreGame';
 import { useEffect, useRef } from 'react';
 
 export function BalloonList() {
-  const { isGameOver, currentTable } = useStoreGame();
+  const { isGameOver, currentTable, duration } = useStoreGame();
   const ref = useRef<HTMLDivElement>(null);
   const randomUniqueKey = currentTable.randomNumbers.join(''); /*Force list re-render*/
 
@@ -18,7 +17,7 @@ export function BalloonList() {
       } else {
         current.style.animation = 'none';
         void current.offsetWidth; /*Force Reflow Animation CSS*/
-        current.style.animation = `float-up ${DURATION}ms linear forwards`;
+        current.style.animation = `float-up ${duration}s linear forwards`;
       }
     }
   }, [isGameOver, currentTable]);

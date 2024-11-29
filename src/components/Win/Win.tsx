@@ -4,23 +4,23 @@ import { Modal } from '@components/Modal/Modal';
 import winURL from '@assets/sounds/win.mp3';
 import { useStoreGame } from '@store/useStoreGame';
 import { Stars } from '@components/Stars/Stars';
-import { DURATION, FINAL_LEVEL } from '@init/init';
+import { FINAL_LEVEL } from '@init/init';
 import { useEffect, useState } from 'react';
 import { NextBtn } from '@components/NextBtn/NextBtn';
 
 export function Win() {
-  const { currentTime, currentTable, updateTableData, tablesData } = useStoreGame();
+  const { currentTime, currentTable, updateTableData, tablesData, duration } =
+    useStoreGame();
   const [stars, setStars] = useState(0);
 
   useAudio(winURL).play();
 
   useEffect(() => {
-    const durationInSeconds = DURATION / 1000;
     let newStars = 1;
 
-    if (currentTime <= durationInSeconds * (1 / 3)) {
+    if (currentTime <= duration * (1 / 3)) {
       newStars = 3;
-    } else if (currentTime <= durationInSeconds * (2 / 3)) {
+    } else if (currentTime <= duration * (2 / 3)) {
       newStars = 2;
     }
 
@@ -30,11 +30,6 @@ export function Win() {
       (table) => table.tableOf === currentTable.tableOf,
     );
     const existingStars = currentTableData?.stars || 0;
-
-    console.log('newStar', newStars);
-    console.log('existingStars', existingStars);
-    console.log('currentTime', currentTime);
-    console.log('durationInSeconds', durationInSeconds);
 
     if (newStars > existingStars) {
       updateTableData(currentTable.tableOf, { stars: newStars });

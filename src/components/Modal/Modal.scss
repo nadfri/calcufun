@@ -10,8 +10,10 @@
 
   .container {
     width: 85vw;
-    min-height: 70svh;
-    max-height: 500px;
+    max-width: 600px;
+
+    height: 70svh;
+    max-height: 600px;
     border: solid 5px palegreen;
     border-radius: 10px;
 

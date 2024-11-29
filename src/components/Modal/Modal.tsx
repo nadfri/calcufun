@@ -10,7 +10,7 @@ export function Modal({ children, className }: PropsWithChildren<Props>) {
   const { resetGame } = useStoreGame();
   return (
     <div className={`Modal blur ${className}`} role="dialog">
-      <div className="container">
+      <div className="container fade-in">
         {children}
 
         <div className="btn-container">

@@ -1,4 +1,4 @@
-export const DURATION = 90 * 1000; /*ms*/
+export const INITIAL_DURATION = 90; /*seconds*/
 
 export const FINAL_LEVEL = 13;
 
