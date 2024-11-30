@@ -3,6 +3,12 @@
     font-size: 3rem;
   }
 
+  .error {
+    font-size: 3rem;
+    color: var(--red);
+    margin: 0;
+  }
+
   .AngryIcon {
     width: 6rem;
     filter: drop-shadow(3px 3px 1px black);

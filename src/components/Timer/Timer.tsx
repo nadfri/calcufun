@@ -16,6 +16,7 @@ export function Timer() {
   useEffect(() => {
     if (time <= 0) {
       setIsGameOver(true);
+      setCurrentTime(0);
     }
   }, [time, setIsGameOver]);
 
