@@ -1,7 +1,7 @@
 # Calcufun
 
 **Calcufun** is a mental arithmetic game designed to help users improve their multiplication skills. The game features multiplication tables from 2 to 12, with each table being unlocked sequentially as the user completes the previous one. The game also includes a star rating system, where users can earn up to 3 stars based on their performance.
-You can play **2048** directly online via this link: [https://calcufun.netlify.app/](https://calcufun.netlify.app/)
+You can play directly online via this link: [https://calcufun.netlify.app/](https://calcufun.netlify.app/)
 
 ## Screenshots
 
